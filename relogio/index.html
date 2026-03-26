@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TimerHub - Ferramentas de tempo online gratuitas: Relógio, Cronômetro, Timer e Hora Mundial. Rápido, preciso e sem instalação.">
-    <meta name="keywords" content="relógio online, cronômetro, timer, hora mundial, ferramentas de tempo">
+    <meta name="description" content="Relógio Online Grátis - Relógio digital em tempo real com formato 12h ou 24h. Veja a hora exata com precisão. Sem instalação.">
+    <meta name="keywords" content="relógio online, hora exata, relógio digital, hora em tempo real">
     <meta name="author" content="TimerHub">
     <meta name="theme-color" content="#1a1a2e">
-    <title>TimerHub - Relógio, Cronômetro e Timer Online Gratuitos</title>
+    <title>Relógio Online Grátis - Hora Exata em Tempo Real | TimerHub</title>
     
     <style>
         * {
@@ -173,117 +173,91 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 40px 20px;
             min-height: calc(100vh - 200px);
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        /* TOOLS GRID */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .tool-card {
-            background: rgba(0, 212, 255, 0.08);
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 16px;
-            padding: 35px 25px;
-            text-align: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            text-decoration: none;
-            color: inherit;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        .tool-card:hover {
-            background: rgba(0, 212, 255, 0.15);
-            border-color: var(--primary-color);
-            transform: translateY(-12px);
-            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .tool-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .tool-name {
-            font-size: 20px;
-            font-weight: 700;
+        h1 {
+            font-size: 28px;
+            margin-bottom: 40px;
             color: var(--primary-color);
-            margin-bottom: 10px;
+            text-align: center;
         }
 
-        .tool-description {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* FEATURES SECTION */
-        .features {
+        /* CLOCK DISPLAY */
+        .clock-section {
             background: rgba(0, 212, 255, 0.08);
             border: 2px solid rgba(0, 212, 255, 0.3);
             border-radius: 16px;
             padding: 40px 30px;
-            margin-bottom: 40px;
-        }
-
-        .features h2 {
-            font-size: 28px;
-            color: var(--primary-color);
-            margin-bottom: 25px;
             text-align: center;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 30px;
         }
 
-        .features-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .feature-icon {
-            font-size: 24px;
+        .clock-display {
+            font-family: 'Courier New', monospace;
+            font-size: 72px;
+            font-weight: 700;
             color: var(--primary-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            letter-spacing: 4px;
+            line-height: 1;
         }
 
-        .feature-text {
-            font-size: 14px;
+        .date-display {
+            font-size: 16px;
             color: var(--text-secondary);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        /* FORMAT BUTTONS */
+        .format-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        .btn {
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--primary-color), #00a8cc);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn.secondary {
+            background: rgba(0, 212, 255, 0.15);
+            color: var(--primary-color);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .btn.secondary:hover {
+            background: rgba(0, 212, 255, 0.25);
+            border-color: var(--primary-color);
         }
 
         /* FOOTER */
@@ -293,7 +267,7 @@
             padding: 30px 20px;
             text-align: center;
             color: var(--text-secondary);
-            margin-top: 80px;
+            margin-top: auto;
         }
 
         .footer-content {
@@ -336,58 +310,62 @@
             }
 
             .container {
-                padding: 40px 16px;
+                padding: 30px 16px;
             }
 
-            h1 {
-                font-size: 36px;
+            .clock-display {
+                font-size: 56px;
+                letter-spacing: 2px;
             }
 
-            .subtitle {
-                font-size: 16px;
-            }
-
-            .tools-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .features {
+            .clock-section {
                 padding: 30px 20px;
             }
 
-            .features h2 {
+            .format-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            h1 {
                 font-size: 24px;
+                margin-bottom: 30px;
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 30px 14px;
+                padding: 24px 14px;
+            }
+
+            .clock-display {
+                font-size: 48px;
+                letter-spacing: 2px;
+                margin-bottom: 10px;
+            }
+
+            .clock-section {
+                padding: 24px 16px;
+                margin-bottom: 20px;
+            }
+
+            .format-buttons {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .btn {
+                padding: 12px 16px;
+                font-size: 12px;
             }
 
             h1 {
-                font-size: 28px;
+                font-size: 20px;
+                margin-bottom: 24px;
             }
 
-            .subtitle {
+            .date-display {
                 font-size: 14px;
-            }
-
-            .tool-card {
-                padding: 25px 20px;
-            }
-
-            .tool-icon {
-                font-size: 40px;
-            }
-
-            .tool-name {
-                font-size: 18px;
-            }
-
-            .features-list {
-                grid-template-columns: 1fr;
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -427,70 +405,17 @@
 
     <!-- MAIN CONTENT -->
     <div class="container">
-        <!-- HERO SECTION -->
-        <div class="hero">
-            <h1>⏱️ TimerHub</h1>
-            <p class="subtitle">
-                Ferramentas de tempo online gratuitas, rápidas e precisas.<br>
-                Relógio, Cronômetro, Timer e Hora Mundial em um só lugar.
-            </p>
-        </div>
+        <h1>🕐 Relógio Online</h1>
 
-        <!-- TOOLS GRID -->
-        <div class="tools-grid">
-            <a href="/relogio/" class="tool-card">
-                <div class="tool-icon">🕐</div>
-                <div class="tool-name">Relógio</div>
-                <div class="tool-description">Veja a hora exata em tempo real com formato 12h ou 24h</div>
-            </a>
+        <div class="clock-section">
+            <!-- CLOCK DISPLAY -->
+            <div class="clock-display" id="clockDisplay">00:00:00</div>
+            <div class="date-display" id="dateDisplay">Carregando...</div>
 
-            <a href="/cronometro/" class="tool-card">
-                <div class="tool-icon">⏱️</div>
-                <div class="tool-name">Cronômetro</div>
-                <div class="tool-description">Meça tempos com precisão e registre suas voltas</div>
-            </a>
-
-            <a href="/timer/" class="tool-card">
-                <div class="tool-icon">⏲️</div>
-                <div class="tool-name">Timer</div>
-                <div class="tool-description">Configure um timer regressivo com alerta sonoro</div>
-            </a>
-
-            <a href="/hora-mundial/" class="tool-card">
-                <div class="tool-icon">🌍</div>
-                <div class="tool-name">Hora Mundial</div>
-                <div class="tool-description">Veja o horário de qualquer cidade do mundo</div>
-            </a>
-        </div>
-
-        <!-- FEATURES SECTION -->
-        <div class="features">
-            <h2>Por que escolher TimerHub?</h2>
-            <div class="features-list">
-                <div class="feature-item">
-                    <div class="feature-icon">⚡</div>
-                    <div class="feature-text">Ultrarrápido e leve</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📱</div>
-                    <div class="feature-text">100% responsivo</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🔒</div>
-                    <div class="feature-text">Sem rastreamento</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">💾</div>
-                    <div class="feature-text">Salva localmente</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎨</div>
-                    <div class="feature-text">Design moderno</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🆓</div>
-                    <div class="feature-text">Totalmente grátis</div>
-                </div>
+            <!-- FORMAT BUTTONS -->
+            <div class="format-buttons">
+                <button class="btn secondary" onclick="setFormat12()">12 Horas</button>
+                <button class="btn" onclick="setFormat24()">24 Horas</button>
             </div>
         </div>
     </div>
@@ -539,6 +464,48 @@
                 menuToggle.classList.remove('active');
             }
         });
+
+        // ========================================
+        // RELÓGIO DIGITAL
+        // ========================================
+        const clockDisplay = document.getElementById('clockDisplay');
+        const dateDisplay = document.getElementById('dateDisplay');
+        let format24 = true;
+
+        function updateClock() {
+            const now = new Date();
+
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            let period = '';
+            if (!format24) {
+                period = hours >= 12 ? ' PM' : ' AM';
+                hours = hours % 12 || 12;
+            }
+
+            clockDisplay.textContent = 
+                String(hours).padStart(2, '0') + ':' + minutes + ':' + seconds + period;
+
+            // Atualizar data
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('pt-BR', options);
+            dateDisplay.textContent = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+        }
+
+        function setFormat12() {
+            format24 = false;
+            updateClock();
+        }
+
+        function setFormat24() {
+            format24 = true;
+            updateClock();
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
     </script>
 </body>
 </html>

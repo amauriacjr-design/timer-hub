@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TimerHub - Ferramentas de tempo online gratuitas: Relógio, Cronômetro, Timer e Hora Mundial. Rápido, preciso e sem instalação.">
-    <meta name="keywords" content="relógio online, cronômetro, timer, hora mundial, ferramentas de tempo">
+    <meta name="description" content="Política de Privacidade do TimerHub - Saiba como protegemos seus dados e informações pessoais.">
+    <meta name="keywords" content="privacidade, política de privacidade, proteção de dados, LGPD">
     <meta name="author" content="TimerHub">
     <meta name="theme-color" content="#1a1a2e">
-    <title>TimerHub - Relógio, Cronômetro e Timer Online Gratuitos</title>
+    <title>Política de Privacidade | TimerHub</title>
     
     <style>
         * {
@@ -171,119 +171,64 @@
 
         /* MAIN CONTENT */
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 40px 20px;
             min-height: calc(100vh - 200px);
         }
 
-        .hero {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
         h1 {
-            font-size: 48px;
+            font-size: 36px;
             margin-bottom: 15px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary-color);
             line-height: 1.2;
         }
 
-        .subtitle {
-            font-size: 18px;
+        .last-updated {
             color: var(--text-secondary);
+            font-size: 13px;
             margin-bottom: 30px;
-            line-height: 1.6;
         }
 
-        /* TOOLS GRID */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+        h2 {
+            font-size: 22px;
+            margin: 35px 0 15px 0;
+            color: var(--primary-color);
         }
 
-        .tool-card {
-            background: rgba(0, 212, 255, 0.08);
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 16px;
-            padding: 35px 25px;
-            text-align: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        h3 {
+            font-size: 18px;
+            margin: 20px 0 12px 0;
+            color: var(--text-primary);
         }
 
-        .tool-card:hover {
-            background: rgba(0, 212, 255, 0.15);
-            border-color: var(--primary-color);
-            transform: translateY(-12px);
-            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2);
+        p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 12px;
         }
 
-        .tool-icon {
-            font-size: 48px;
+        ul {
+            list-style-position: inside;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
             margin-bottom: 15px;
+            margin-left: 15px;
         }
 
-        .tool-name {
-            font-size: 20px;
-            font-weight: 700;
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
             color: var(--primary-color);
-            margin-bottom: 10px;
+            text-decoration: none;
         }
 
-        .tool-description {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* FEATURES SECTION */
-        .features {
-            background: rgba(0, 212, 255, 0.08);
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 16px;
-            padding: 40px 30px;
-            margin-bottom: 40px;
-        }
-
-        .features h2 {
-            font-size: 28px;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .features-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .feature-icon {
-            font-size: 24px;
-            color: var(--primary-color);
-        }
-
-        .feature-text {
-            font-size: 14px;
-            color: var(--text-secondary);
+        a:hover {
+            text-decoration: underline;
         }
 
         /* FOOTER */
@@ -336,58 +281,33 @@
             }
 
             .container {
-                padding: 40px 16px;
-            }
-
-            h1 {
-                font-size: 36px;
-            }
-
-            .subtitle {
-                font-size: 16px;
-            }
-
-            .tools-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .features {
-                padding: 30px 20px;
-            }
-
-            .features h2 {
-                font-size: 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 30px 14px;
+                padding: 30px 16px;
             }
 
             h1 {
                 font-size: 28px;
             }
 
-            .subtitle {
-                font-size: 14px;
+            h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px 14px;
             }
 
-            .tool-card {
-                padding: 25px 20px;
+            h1 {
+                font-size: 24px;
             }
 
-            .tool-icon {
-                font-size: 40px;
-            }
-
-            .tool-name {
+            h2 {
                 font-size: 18px;
             }
 
-            .features-list {
-                grid-template-columns: 1fr;
+            p, ul {
+                font-size: 14px;
             }
         }
     </style>
@@ -427,72 +347,61 @@
 
     <!-- MAIN CONTENT -->
     <div class="container">
-        <!-- HERO SECTION -->
-        <div class="hero">
-            <h1>⏱️ TimerHub</h1>
-            <p class="subtitle">
-                Ferramentas de tempo online gratuitas, rápidas e precisas.<br>
-                Relógio, Cronômetro, Timer e Hora Mundial em um só lugar.
-            </p>
-        </div>
+        <h1>Política de Privacidade</h1>
+        <p class="last-updated">Última atualização: 26 de março de 2024</p>
 
-        <!-- TOOLS GRID -->
-        <div class="tools-grid">
-            <a href="/relogio/" class="tool-card">
-                <div class="tool-icon">🕐</div>
-                <div class="tool-name">Relógio</div>
-                <div class="tool-description">Veja a hora exata em tempo real com formato 12h ou 24h</div>
-            </a>
+        <h2>1. Introdução</h2>
+        <p>
+            Bem-vindo ao TimerHub ("nós", "nosso" ou "nos"). O TimerHub é comprometido com a proteção de sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e salvaguardamos suas informações quando você visita nosso site.
+        </p>
 
-            <a href="/cronometro/" class="tool-card">
-                <div class="tool-icon">⏱️</div>
-                <div class="tool-name">Cronômetro</div>
-                <div class="tool-description">Meça tempos com precisão e registre suas voltas</div>
-            </a>
+        <h2>2. Informações que Coletamos</h2>
+        <p>
+            O TimerHub é um serviço que não requer registro ou login. Portanto, não coletamos informações pessoais identificáveis como nome, endereço de email ou dados de pagamento.
+        </p>
+        <h3>Informações Coletadas Automaticamente:</h3>
+        <ul>
+            <li>Endereço IP do seu navegador</li>
+            <li>Tipo e versão do navegador</li>
+            <li>Sistema operacional</li>
+            <li>Páginas visitadas e tempo gasto em cada página</li>
+            <li>Referrer (página anterior)</li>
+        </ul>
 
-            <a href="/timer/" class="tool-card">
-                <div class="tool-icon">⏲️</div>
-                <div class="tool-name">Timer</div>
-                <div class="tool-description">Configure um timer regressivo com alerta sonoro</div>
-            </a>
+        <h2>3. Como Usamos Suas Informações</h2>
+        <p>Usamos as informações coletadas para:</p>
+        <ul>
+            <li>Melhorar e otimizar nosso site</li>
+            <li>Analisar tendências de uso</li>
+            <li>Detectar e prevenir atividades fraudulentas</li>
+            <li>Melhorar a experiência do usuário</li>
+            <li>Cumprir com obrigações legais</li>
+        </ul>
 
-            <a href="/hora-mundial/" class="tool-card">
-                <div class="tool-icon">🌍</div>
-                <div class="tool-name">Hora Mundial</div>
-                <div class="tool-description">Veja o horário de qualquer cidade do mundo</div>
-            </a>
-        </div>
+        <h2>4. Cookies e Tecnologias de Rastreamento</h2>
+        <p>
+            O TimerHub pode usar cookies para melhorar sua experiência. Os cookies são pequenos arquivos armazenados em seu dispositivo que ajudam a lembrar suas preferências. Você pode desabilitar cookies em suas configurações de navegador, mas isso pode afetar a funcionalidade do site.
+        </p>
 
-        <!-- FEATURES SECTION -->
-        <div class="features">
-            <h2>Por que escolher TimerHub?</h2>
-            <div class="features-list">
-                <div class="feature-item">
-                    <div class="feature-icon">⚡</div>
-                    <div class="feature-text">Ultrarrápido e leve</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📱</div>
-                    <div class="feature-text">100% responsivo</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🔒</div>
-                    <div class="feature-text">Sem rastreamento</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">💾</div>
-                    <div class="feature-text">Salva localmente</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎨</div>
-                    <div class="feature-text">Design moderno</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🆓</div>
-                    <div class="feature-text">Totalmente grátis</div>
-                </div>
-            </div>
-        </div>
+        <h2>5. Segurança de Dados</h2>
+        <p>
+            Implementamos medidas de segurança apropriadas para proteger suas informações contra acesso não autorizado, alteração, divulgação ou destruição. No entanto, nenhum método de transmissão pela Internet é 100% seguro.
+        </p>
+
+        <h2>6. Retenção de Dados</h2>
+        <p>
+            Retemos dados de log por um período de até 90 dias. Após esse período, os dados são automaticamente deletados de nossos servidores.
+        </p>
+
+        <h2>7. Conformidade com LGPD</h2>
+        <p>
+            O TimerHub está em conformidade com a Lei Geral de Proteção de Dados (LGPD) do Brasil. Se você é residente do Brasil, você tem direitos adicionais sob a LGPD.
+        </p>
+
+        <h2>8. Contato</h2>
+        <p>
+            Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato conosco através da <a href="/contato/">página de contato</a>.
+        </p>
     </div>
 
     <!-- FOOTER -->
