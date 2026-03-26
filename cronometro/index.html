@@ -213,27 +213,28 @@
 
         /* CONTROL BUTTONS */
         .controls {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            width: 100%;
-            margin-bottom: 20px;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
 
-        .btn {
-            padding: 16px 24px;
-            background: linear-gradient(135deg, var(--primary-color), #00a8cc);
-            color: var(--bg-dark);
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+.btn {
+    padding: 12px 10px;
+    background: linear-gradient(135deg, var(--primary-color), #00a8cc);
+    color: var(--bg-dark);
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: 100%;
+    white-space: nowrap;
+}
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
