@@ -201,15 +201,21 @@
         }
 
         .timer-display {
-            font-family: 'Courier New', monospace;
-            font-size: 72px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-            letter-spacing: 4px;
-            line-height: 1;
-        }
+    font-family: 'Courier New', monospace;
+    font-size: clamp(2rem, 9vw, 4.5rem);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+    letter-spacing: 4px;
+    line-height: 1;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
 
         .timer-display.alarm {
             animation: pulse 0.5s infinite;
