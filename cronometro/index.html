@@ -201,15 +201,19 @@
         }
 
         .stopwatch-display {
-            font-family: 'Courier New', monospace;
-            font-size: clamp(40px, 10vw, 72px);
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-            letter-spacing: 2px;
-            line-height: 1;
-        }
+    font-family: 'Courier New', monospace;
+    font-size: clamp(28px, 9vw, 60px); /* DIMINUÍMOS */
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+    letter-spacing: 2px;
+    line-height: 1;
+
+    max-width: 100%;           /* NOVO */
+    overflow: hidden;          /* NOVO */
+    text-align: center;        /* GARANTE CENTRALIZAÇÃO */
+}
 
         /* CONTROL BUTTONS */
         .controls {
