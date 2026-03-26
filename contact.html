@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TimerHub - Relógio online, cronômetro e hora mundial em tempo real. Ferramentas de tempo simples, rápidas e precisas para seu dia a dia.">
-    <meta name="keywords" content="relógio online, cronômetro online, hora mundial, relógio digital, hora exata, ferramentas de tempo">
+    <meta name="description" content="Entre em contato com o TimerHub - Envie suas dúvidas, sugestões e feedback sobre nossas ferramentas de tempo online.">
+    <meta name="keywords" content="contato, suporte, feedback, dúvidas, sugestões">
     <meta name="author" content="TimerHub">
     <meta name="theme-color" content="#1a1a2e">
-    <title>TimerHub - Relógio Online, Cronômetro e Hora Mundial Gratuitos</title>
+    <title>Contato | TimerHub</title>
     
     <style>
         * {
@@ -96,16 +96,15 @@
             color: var(--primary-color);
         }
 
-        /* HERO SECTION */
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(255, 0, 110, 0.05) 100%);
-            border-bottom: 1px solid var(--border-color);
+        /* MAIN CONTENT */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
         }
 
         h1 {
-            font-size: 56px;
+            font-size: 48px;
             margin-bottom: 20px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
@@ -114,103 +113,142 @@
             line-height: 1.2;
         }
 
-        .hero-subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-description {
+        .intro-text {
             font-size: 16px;
             color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 50px;
+            margin-bottom: 40px;
             line-height: 1.8;
         }
 
-        /* FEATURES GRID */
-        .features {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
+        /* CONTACT FORM */
+        .contact-form {
             background: rgba(0, 212, 255, 0.08);
             border: 2px solid rgba(0, 212, 255, 0.3);
             border-radius: 12px;
             padding: 40px;
-            text-align: center;
-            transition: all 0.3s ease;
+            margin-bottom: 50px;
             backdrop-filter: blur(10px);
         }
 
-        .feature-card:hover {
-            background: rgba(0, 212, 255, 0.15);
-            border-color: var(--primary-color);
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.2);
+        .form-group {
+            margin-bottom: 25px;
         }
 
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h2 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
             font-size: 14px;
         }
 
-        .feature-card a {
-            display: inline-block;
-            padding: 12px 24px;
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--text-secondary);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(0, 212, 255, 0.15);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn {
+            padding: 14px 32px;
             background: linear-gradient(135deg, var(--primary-color), #00a8cc);
             color: var(--bg-dark);
-            text-decoration: none;
+            border: none;
             border-radius: 8px;
+            font-size: 16px;
             font-weight: 700;
+            cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
         }
 
-        .feature-card a:hover {
+        .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.4);
         }
 
-        /* SECTION */
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            border-bottom: 1px solid var(--border-color);
+        .btn:active {
+            transform: translateY(-1px);
         }
 
-        .section h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
+        /* SUCCESS MESSAGE */
+        .success-message {
+            display: none;
+            background: rgba(0, 212, 255, 0.15);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* CONTACT INFO */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .info-card {
+            background: rgba(0, 212, 255, 0.08);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: var(--primary-color);
+            transform: translateY(-8px);
+        }
+
+        .info-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
             color: var(--primary-color);
         }
 
-        .section p {
-            font-size: 16px;
+        .info-card p {
+            font-size: 14px;
             color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 20px;
         }
 
         /* FOOTER */
@@ -220,6 +258,7 @@
             padding: 40px 20px;
             text-align: center;
             color: var(--text-secondary);
+            margin-top: 80px;
         }
 
         .footer-content {
@@ -257,17 +296,12 @@
                 font-size: 36px;
             }
 
-            .hero {
-                padding: 50px 20px;
+            .container {
+                padding: 40px 20px;
             }
 
-            .hero-subtitle {
-                font-size: 18px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-                padding: 50px 20px;
+            .contact-form {
+                padding: 25px;
             }
 
             .nav-links {
@@ -289,12 +323,12 @@
                 font-size: 28px;
             }
 
-            .hero {
-                padding: 40px 15px;
+            .container {
+                padding: 30px 15px;
             }
 
-            .hero-subtitle {
-                font-size: 16px;
+            .contact-form {
+                padding: 20px;
             }
 
             .logo {
@@ -306,22 +340,10 @@
                 gap: 8px;
                 text-align: center;
             }
-        }
 
-        /* ANIMAÇÕES */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+            .contact-info {
+                grid-template-columns: 1fr;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .feature-card {
-            animation: fadeIn 0.8s ease-out;
         }
     </style>
 </head>
@@ -335,58 +357,73 @@
             </a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="relogio-online.html">Relógio Online</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="relogio-online.html">Relógio</a></li>
                     <li><a href="cronometro-online.html">Cronômetro</a></li>
                     <li><a href="hora-mundial.html">Hora Mundial</a></li>
-                    <li><a href="contact.html">Contato</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <h1>TimerHub - Ferramentas de Tempo Online</h1>
-        <p class="hero-subtitle">Relógio, Cronômetro e Hora Mundial em Tempo Real</p>
-        <p class="hero-description">
-            Bem-vindo ao TimerHub, sua plataforma completa de ferramentas de tempo online. Oferecemos relógio digital preciso, cronômetro profissional e consulta de horário mundial instantânea. Todas as ferramentas são gratuitas, rápidas e otimizadas para funcionar perfeitamente em qualquer dispositivo.
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <h1>Entre em Contato Conosco</h1>
+        <p class="intro-text">
+            Tem dúvidas sobre o TimerHub? Quer sugerir uma nova funcionalidade? Encontrou um problema? Estamos aqui para ouvir! Preencha o formulário abaixo e entraremos em contato o mais breve possível.
         </p>
-    </section>
 
-    <!-- FEATURES SECTION -->
-    <section class="features">
-        <div class="feature-card">
-            <div class="feature-icon">🕐</div>
-            <h2>Relógio Online</h2>
-            <p>Veja a hora exata em tempo real com suporte a formatos de 12 e 24 horas. Perfeito para sincronizar seus compromissos.</p>
-            <a href="relogio-online.html">Acessar Relógio</a>
+        <!-- SUCCESS MESSAGE -->
+        <div class="success-message" id="successMessage">
+            ✓ Mensagem enviada com sucesso! Obrigado por entrar em contato. Responderemos em breve.
         </div>
 
-        <div class="feature-card">
-            <div class="feature-icon">⏱️</div>
-            <h2>Cronômetro Online</h2>
-            <p>Cronômetro preciso com histórico de tempos. Ideal para treinos, estudos e qualquer atividade que necessite cronometragem.</p>
-            <a href="cronometro-online.html">Usar Cronômetro</a>
-        </div>
+        <!-- CONTACT FORM -->
+        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Nome *</label>
+                <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
+            </div>
 
-        <div class="feature-card">
-            <div class="feature-icon">🌍</div>
-            <h2>Hora Mundial</h2>
-            <p>Consulte o horário em qualquer cidade do mundo. Adicione suas cidades favoritas e acompanhe em tempo real.</p>
-            <a href="hora-mundial.html">Ver Hora Mundial</a>
-        </div>
-    </section>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+            </div>
 
-    <!-- ABOUT SECTION -->
-    <section class="section">
-        <h2>Por que escolher o TimerHub?</h2>
-        <p>
-            O TimerHub é uma plataforma desenvolvida para oferecer as melhores ferramentas de tempo online. Com uma interface moderna e intuitiva, você acessa todas as funcionalidades sem necessidade de instalação ou cadastro. Nossas ferramentas são otimizadas para velocidade e precisão, garantindo que você sempre tenha acesso à hora exata.
-        </p>
-        <p>
-            Seja para fins profissionais, educacionais ou pessoais, o TimerHub oferece soluções confiáveis e gratuitas. Nossas ferramentas funcionam em qualquer navegador moderno, em desktop ou dispositivos móveis, garantindo acessibilidade total.
-        </p>
-    </section>
+            <div class="form-group">
+                <label for="subject">Assunto *</label>
+                <input type="text" id="subject" name="subject" placeholder="Assunto da mensagem" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Mensagem *</label>
+                <textarea id="message" name="message" placeholder="Escreva sua mensagem aqui..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn">Enviar Mensagem</button>
+        </form>
+
+        <!-- CONTACT INFO -->
+        <div class="contact-info">
+            <div class="info-card">
+                <div class="info-icon">📧</div>
+                <h3>Email</h3>
+                <p>contato@timerhub.com</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">🌐</div>
+                <h3>Website</h3>
+                <p>www.timerhub.com</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">⏰</div>
+                <h3>Resposta</h3>
+                <p>Respondemos em até 24 horas</p>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
@@ -407,5 +444,26 @@
             </p>
         </div>
     </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Simular envio do formulário
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Limpar formulário
+            form.reset();
+            
+            // Mostrar mensagem de sucesso
+            successMessage.classList.add('show');
+            
+            // Esconder mensagem após 5 segundos
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        }
+    </script>
 </body>
 </html>

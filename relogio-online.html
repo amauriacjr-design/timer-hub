@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Relógio Online Gratuito - Veja a hora exata em tempo real com suporte a 12 e 24 horas. Ferramenta precisa e rápida para sincronizar seus compromissos.">
+    <meta name="keywords" content="relógio online, relógio digital, hora exata, relógio em tempo real, hora precisa">
+    <meta name="author" content="TimerHub">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Relógio Online Gratuito - Hora Exata em Tempo Real | TimerHub</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff006e;
+            --bg-dark: #0f0f1e;
+            --bg-card: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-color: #2d2d44;
+            --shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .breadcrumb {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* CLOCK SECTION */
+        .clock-section {
+            background: rgba(0, 212, 255, 0.08);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .clock-display {
+            font-size: 96px;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--primary-color);
+            margin: 40px 0;
+            letter-spacing: 4px;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .date-display {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .format-toggle {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .format-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .format-btn.active {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            border-color: var(--primary-color);
+        }
+
+        .format-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* CONTENT SECTIONS */
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 22px;
+            margin: 30px 0 15px 0;
+            color: var(--text-primary);
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style-position: inside;
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(15, 15, 30, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .clock-section {
+                padding: 30px;
+            }
+
+            .clock-display {
+                font-size: 56px;
+                letter-spacing: 2px;
+            }
+
+            .format-btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 30px 15px;
+            }
+
+            .clock-section {
+                padding: 20px;
+            }
+
+            .clock-display {
+                font-size: 42px;
+                letter-spacing: 1px;
+            }
+
+            .format-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 50px rgba(0, 212, 255, 0.6);
+            }
+        }
+
+        .clock-display {
+            animation: glow 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⏱️</span>
+                <span>TimerHub</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cronometro-online.html">Cronômetro</a></li>
+                    <li><a href="hora-mundial.html">Hora Mundial</a></li>
+                    <li><a href="contact.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> / Relógio Online
+        </div>
+
+        <h1>Relógio Online Gratuito - Hora Exata em Tempo Real</h1>
+
+        <!-- CLOCK SECTION -->
+        <section class="clock-section">
+            <div class="date-display" id="dateDisplay">Carregando...</div>
+            <div class="clock-display" id="clockDisplay">00:00:00</div>
+            
+            <div class="format-toggle">
+                <button class="format-btn active" onclick="toggleClockFormat(12, this)">12 Horas (AM/PM)</button>
+                <button class="format-btn" onclick="toggleClockFormat(24, this)">24 Horas</button>
+            </div>
+        </section>
+
+        <!-- CONTENT SECTIONS -->
+        <section class="content-section">
+            <h2>O que é um Relógio Online?</h2>
+            <p>
+                Um relógio online é uma ferramenta digital que exibe a hora exata em tempo real através de um navegador web. Diferentemente dos relógios tradicionais, o relógio online sincroniza-se com servidores de tempo precisos, garantindo que você sempre tenha acesso à hora correta. No TimerHub, oferecemos um relógio online gratuito, rápido e acessível de qualquer dispositivo com conexão à internet.
+            </p>
+            <p>
+                Nosso relógio online é ideal para profissionais que precisam sincronizar seus compromissos, estudantes que necessitam gerenciar seu tempo de estudo, e qualquer pessoa que deseje ter acesso rápido e fácil à hora exata sem necessidade de instalação de aplicativos.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Características do Nosso Relógio Online</h2>
+            <ul>
+                <li><strong>Precisão em Tempo Real:</strong> Atualização contínua a cada segundo para máxima precisão</li>
+                <li><strong>Dois Formatos de Exibição:</strong> Escolha entre formato de 12 horas (AM/PM) ou 24 horas</li>
+                <li><strong>Data Automática:</strong> Exibe a data atual em português de forma clara e legível</li>
+                <li><strong>Interface Limpa:</strong> Design moderno e intuitivo que funciona em qualquer navegador</li>
+                <li><strong>Totalmente Gratuito:</strong> Sem anúncios intrusivos ou necessidade de cadastro</li>
+                <li><strong>Responsivo:</strong> Funciona perfeitamente em desktop, tablet e dispositivos móveis</li>
+                <li><strong>Rápido e Leve:</strong> Carrega instantaneamente sem consumir muitos recursos</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Como Usar o Relógio Online TimerHub</h2>
+            <p>
+                Usar nosso relógio online é extremamente simples. Basta acessar esta página e a hora exata será exibida automaticamente em grande formato na tela. Você pode alternar entre os formatos de 12 e 24 horas clicando nos botões correspondentes. A hora é atualizada automaticamente a cada segundo, garantindo que você sempre veja a hora correta.
+            </p>
+            <p>
+                Não é necessário fazer login, instalar nada ou realizar qualquer configuração. Tudo funciona instantaneamente no seu navegador. Você pode marcar esta página nos favoritos para acesso rápido sempre que precisar.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h3>Formatos de Hora Disponíveis</h3>
+            <p>
+                <strong>Formato 12 Horas (AM/PM):</strong> Este é o formato mais comum em países como Estados Unidos e Brasil em contextos informais. Exibe a hora de 1 a 12, seguida de AM (ante meridiem) ou PM (post meridiem). Exemplo: 2:30 PM.
+            </p>
+            <p>
+                <strong>Formato 24 Horas:</strong> Também conhecido como formato militar ou europeu, exibe a hora de 0 a 23. Este formato é mais preciso e amplamente utilizado em contextos profissionais e técnicos. Exemplo: 14:30.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Por Que Usar o Relógio Online TimerHub?</h2>
+            <p>
+                Existem várias razões pelas quais nosso relógio online é a melhor escolha para você:
+            </p>
+            <ul>
+                <li><strong>Confiabilidade:</strong> Sincronizado com padrões de tempo precisos</li>
+                <li><strong>Acessibilidade:</strong> Funciona em qualquer navegador moderno</li>
+                <li><strong>Privacidade:</strong> Não coletamos dados pessoais dos usuários</li>
+                <li><strong>Velocidade:</strong> Carrega instantaneamente sem delays</li>
+                <li><strong>Compatibilidade:</strong> Funciona em Windows, Mac, Linux, iOS e Android</li>
+                <li><strong>Sem Publicidade Intrusiva:</strong> Interface limpa e focada na funcionalidade</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Aplicações Práticas do Relógio Online</h2>
+            <p>
+                O relógio online pode ser utilizado em diversas situações do dia a dia. Profissionais podem usar para sincronizar reuniões e compromissos importantes. Estudantes podem usar para gerenciar o tempo de estudo e cumprir prazos de trabalhos. Atletas e treinadores podem usar para cronometrar treinos. Professores podem usar em sala de aula para gerenciar o tempo de aulas e provas.
+            </p>
+            <p>
+                Além disso, o relógio online é perfeito para qualquer pessoa que deseje ter um acesso rápido e fácil à hora exata sem necessidade de olhar para o relógio do computador ou do celular.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Dicas para Maximizar o Uso do Relógio Online</h2>
+            <ul>
+                <li>Marque a página nos favoritos para acesso rápido</li>
+                <li>Use a tela cheia (F11) para uma experiência mais imersiva</li>
+                <li>Combine com outras ferramentas do TimerHub como cronômetro e hora mundial</li>
+                <li>Compartilhe o link com colegas e amigos que também precisem de um relógio online confiável</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                <strong>TimerHub</strong> - Suas ferramentas de tempo online gratuitas.
+            </p>
+            <div class="footer-links">
+                <a href="relogio-online.html">Relógio Online</a>
+                <a href="cronometro-online.html">Cronômetro Online</a>
+                <a href="hora-mundial.html">Hora Mundial</a>
+                <a href="privacy.html">Privacidade</a>
+                <a href="terms.html">Termos de Uso</a>
+                <a href="contact.html">Contato</a>
+            </div>
+            <p class="footer-text" style="font-size: 12px; margin-top: 20px;">
+                © 2024 TimerHub. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ========================================
+        // RELÓGIO DIGITAL
+        // ========================================
+        let clockFormat = 12;
+
+        function updateClock() {
+            const now = new Date();
+            const clockDisplay = document.getElementById('clockDisplay');
+            const dateDisplay = document.getElementById('dateDisplay');
+
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            if (clockFormat === 12) {
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12 || 12;
+                hours = String(hours).padStart(2, '0');
+                clockDisplay.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+            } else {
+                hours = String(hours).padStart(2, '0');
+                clockDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('pt-BR', options);
+            dateDisplay.textContent = dateStr;
+        }
+
+        function toggleClockFormat(format, element) {
+            clockFormat = format;
+            document.querySelectorAll('.format-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            updateClock();
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>

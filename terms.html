@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Termos de Uso do TimerHub - Leia os termos e condições para usar nossos serviços.">
+    <meta name="keywords" content="termos de uso, condições de uso, termos de serviço">
+    <meta name="author" content="TimerHub">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Termos de Uso | TimerHub</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff006e;
+            --bg-dark: #0f0f1e;
+            --bg-card: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-color: #2d2d44;
+            --shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin: 40px 0 20px 0;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+            color: var(--text-primary);
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style-position: inside;
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(15, 15, 30, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .container {
+                padding: 30px 15px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⏱️</span>
+                <span>TimerHub</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="relogio-online.html">Relógio</a></li>
+                    <li><a href="cronometro-online.html">Cronômetro</a></li>
+                    <li><a href="hora-mundial.html">Hora Mundial</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <h1>Termos de Uso</h1>
+        <p class="last-updated">Última atualização: 26 de março de 2024</p>
+
+        <h2>1. Aceitação dos Termos</h2>
+        <p>
+            Ao acessar e usar o TimerHub, você concorda em cumprir e estar vinculado por estes Termos de Uso. Se você não concordar com qualquer parte destes termos, não use o site.
+        </p>
+
+        <h2>2. Licença de Uso</h2>
+        <p>
+            O TimerHub concede a você uma licença limitada, não exclusiva e revogável para acessar e usar o site para fins pessoais e não comerciais. Você não pode reproduzir, distribuir, transmitir, exibir, executar, publicar ou licenciar qualquer conteúdo do site sem permissão explícita.
+        </p>
+
+        <h2>3. Restrições de Uso</h2>
+        <p>
+            Você concorda em não:
+        </p>
+        <ul>
+            <li>Usar o site para fins ilegais ou não autorizados</li>
+            <li>Violar qualquer lei ou regulamento aplicável</li>
+            <li>Interferir com a operação do site ou seus servidores</li>
+            <li>Tentar ganhar acesso não autorizado ao site</li>
+            <li>Usar o site para enviar spam, malware ou conteúdo prejudicial</li>
+            <li>Coletar ou rastrear informações pessoais de outros usuários</li>
+            <li>Usar scripts ou bots para automatizar o acesso ao site</li>
+        </ul>
+
+        <h2>4. Isenção de Responsabilidade</h2>
+        <p>
+            O TimerHub é fornecido "no estado em que se encontra" sem garantias de qualquer tipo, expressas ou implícitas. Não garantimos que o site funcionará sem interrupções ou erros. O TimerHub não é responsável por qualquer dano direto, indireto, incidental ou consequente resultante do uso ou incapacidade de usar o site.
+        </p>
+
+        <h2>5. Precisão das Informações</h2>
+        <p>
+            Embora nos esforcemos para fornecer informações precisas, o TimerHub não garante a precisão, integridade ou atualidade de qualquer conteúdo. As informações de hora fornecidas são baseadas em padrões de tempo internacionais, mas podem estar sujeitas a variações mínimas.
+        </p>
+
+        <h2>6. Limitação de Responsabilidade</h2>
+        <p>
+            Em nenhuma circunstância o TimerHub, seus proprietários, funcionários ou afiliados serão responsáveis por qualquer dano especial, incidental, indireto ou consequente resultante do uso ou incapacidade de usar o site, mesmo que tenham sido informados da possibilidade de tais danos.
+        </p>
+
+        <h2>7. Modificações do Serviço</h2>
+        <p>
+            O TimerHub se reserva o direito de modificar, suspender ou descontinuar o serviço a qualquer momento, com ou sem aviso prévio. Não seremos responsáveis por qualquer modificação, suspensão ou descontinuação do serviço.
+        </p>
+
+        <h2>8. Links Externos</h2>
+        <p>
+            O TimerHub pode conter links para sites de terceiros. Não somos responsáveis pelo conteúdo, precisão ou práticas desses sites. O acesso a sites de terceiros é por sua conta e risco.
+        </p>
+
+        <h2>9. Propriedade Intelectual</h2>
+        <p>
+            Todo o conteúdo do TimerHub, incluindo texto, gráficos, logos, imagens e software, é propriedade do TimerHub ou seus fornecedores de conteúdo e está protegido por leis de direitos autorais internacionais.
+        </p>
+
+        <h2>10. Indenização</h2>
+        <p>
+            Você concorda em indenizar, defender e isentar o TimerHub, seus proprietários, funcionários e afiliados de qualquer reclamação, dano, perda ou despesa resultante do seu uso do site ou violação destes Termos de Uso.
+        </p>
+
+        <h2>11. Lei Aplicável</h2>
+        <p>
+            Estes Termos de Uso são regidos pelas leis do Brasil. Qualquer disputa será resolvida nos tribunais competentes do Brasil.
+        </p>
+
+        <h2>12. Alterações aos Termos</h2>
+        <p>
+            O TimerHub se reserva o direito de modificar estes Termos de Uso a qualquer momento. Alterações entram em vigor imediatamente após serem postadas no site. Seu uso contínuo do site após alterações constitui sua aceitação dos novos termos.
+        </p>
+
+        <h2>13. Contato</h2>
+        <p>
+            Se você tiver dúvidas sobre estes Termos de Uso, entre em contato conosco através da <a href="contact.html" style="color: var(--primary-color); text-decoration: none;">página de contato</a>.
+        </p>
+
+        <h2>14. Disposição Final</h2>
+        <p>
+            Se qualquer disposição destes Termos de Uso for considerada inválida ou inaplicável, as disposições restantes permanecerão em vigor. O não cumprimento de qualquer disposição não constitui uma renúncia ao direito de fazer cumprir essa disposição.
+        </p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                <strong>TimerHub</strong> - Suas ferramentas de tempo online gratuitas.
+            </p>
+            <div class="footer-links">
+                <a href="relogio-online.html">Relógio Online</a>
+                <a href="cronometro-online.html">Cronômetro Online</a>
+                <a href="hora-mundial.html">Hora Mundial</a>
+                <a href="privacy.html">Privacidade</a>
+                <a href="terms.html">Termos de Uso</a>
+                <a href="contact.html">Contato</a>
+            </div>
+            <p class="footer-text" style="font-size: 12px; margin-top: 20px;">
+                © 2024 TimerHub. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

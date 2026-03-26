@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hora Mundial Online - Veja o horário em tempo real de qualquer cidade do mundo. Adicione suas cidades favoritas e acompanhe os fusos horários.">
+    <meta name="keywords" content="hora mundial, fuso horário, relógio mundial, hora em tempo real, horário das cidades">
+    <meta name="author" content="TimerHub">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Hora Mundial Online - Horário de Qualquer Cidade | TimerHub</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff006e;
+            --bg-dark: #0f0f1e;
+            --bg-card: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-color: #2d2d44;
+            --shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .breadcrumb {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* ADD CITY FORM */
+        .add-city-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .add-city-form input {
+            padding: 12px 16px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .add-city-form input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .add-city-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(0, 212, 255, 0.15);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary-color), #00a8cc);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        /* WORLD CLOCK */
+        .world-clock-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .city-card {
+            background: rgba(0, 212, 255, 0.08);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .city-card:hover {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: var(--primary-color);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .city-name {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .city-time {
+            font-family: 'Courier New', monospace;
+            font-size: 32px;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .city-timezone {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .remove-city {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 0, 110, 0.3);
+            border: none;
+            color: var(--secondary-color);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .remove-city:hover {
+            background: rgba(255, 0, 110, 0.5);
+        }
+
+        /* CONTENT SECTIONS */
+        .content-section {
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 22px;
+            margin: 30px 0 15px 0;
+            color: var(--text-primary);
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style-position: inside;
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(15, 15, 30, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .world-clock-list {
+                grid-template-columns: 1fr;
+            }
+
+            .add-city-form {
+                flex-direction: column;
+            }
+
+            .add-city-form input {
+                min-width: 100%;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 30px 15px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .city-time {
+                font-size: 24px;
+            }
+
+            .btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .city-card {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⏱️</span>
+                <span>TimerHub</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="relogio-online.html">Relógio</a></li>
+                    <li><a href="cronometro-online.html">Cronômetro</a></li>
+                    <li><a href="contact.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> / Hora Mundial
+        </div>
+
+        <h1>Hora Mundial Online - Horário de Qualquer Cidade</h1>
+
+        <!-- ADD CITY FORM -->
+        <div class="add-city-form">
+            <input type="text" id="cityInput" placeholder="Digite o nome da cidade (ex: Tokyo, New York, Sydney)..." />
+            <button class="btn" onclick="addCity()">Adicionar</button>
+        </div>
+
+        <!-- WORLD CLOCK -->
+        <div class="world-clock-list" id="worldClockList">
+            <!-- Será preenchido por JavaScript -->
+        </div>
+
+        <!-- CONTENT SECTIONS -->
+        <section class="content-section">
+            <h2>O que é Hora Mundial?</h2>
+            <p>
+                Hora Mundial refere-se ao horário em diferentes cidades e regiões ao redor do planeta. Cada localidade possui seu próprio fuso horário, que é determinado pela posição geográfica em relação ao meridiano de Greenwich. A ferramenta de Hora Mundial do TimerHub permite que você consulte o horário exato em qualquer cidade do mundo em tempo real.
+            </p>
+            <p>
+                Essa ferramenta é essencial para profissionais que trabalham com equipes internacionais, viajantes que desejam saber a hora em seus destinos, ou qualquer pessoa que necessite coordenar atividades com pessoas em diferentes fusos horários.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Características da Ferramenta de Hora Mundial</h2>
+            <ul>
+                <li><strong>Múltiplas Cidades:</strong> Acompanhe o horário de várias cidades simultaneamente</li>
+                <li><strong>Busca Flexível:</strong> Digite o nome da cidade para encontrar seu fuso horário</li>
+                <li><strong>Atualização em Tempo Real:</strong> Todos os horários são atualizados a cada segundo</li>
+                <li><strong>Informação de Fuso:</strong> Veja o identificador do fuso horário de cada cidade</li>
+                <li><strong>Adicionar/Remover:</strong> Personalize sua lista de cidades favoritas</li>
+                <li><strong>Interface Responsiva:</strong> Funciona perfeitamente em qualquer dispositivo</li>
+                <li><strong>Totalmente Gratuito:</strong> Sem custos ou necessidade de cadastro</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Como Usar a Ferramenta de Hora Mundial</h2>
+            <p>
+                Usar a ferramenta de Hora Mundial é muito simples. Digite o nome de uma cidade no campo de entrada e clique em "Adicionar". A cidade será adicionada à sua lista com seu horário atual exibido em tempo real. Você pode adicionar quantas cidades desejar. Para remover uma cidade, clique no botão "✕" no canto superior direito do card da cidade.
+            </p>
+            <p>
+                Todas as horas são atualizadas automaticamente a cada segundo, garantindo que você sempre veja o horário correto. Você pode marcar esta página nos favoritos para ter acesso rápido sempre que precisar consultar a hora em diferentes cidades.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h3>Cidades Suportadas</h3>
+            <p>
+                A ferramenta suporta praticamente todas as cidades principais do mundo, incluindo:
+            </p>
+            <ul>
+                <li><strong>Ásia:</strong> Tokyo, Bangkok, Hong Kong, Singapura, Dubai, Mumbai, Delhi</li>
+                <li><strong>Europa:</strong> Londres, Paris, Berlim, Madri, Roma, Moscou, Istambul</li>
+                <li><strong>Américas:</strong> Nova York, Los Angeles, Toronto, Buenos Aires, Santiago, Lima</li>
+                <li><strong>Oceania:</strong> Sydney, Auckland, Fiji</li>
+                <li><strong>África:</strong> Cairo, Johannesburgo, Lagos, Nairobi</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Entendendo Fusos Horários</h2>
+            <p>
+                Os fusos horários são divisões imaginárias do globo terrestre que determinam a hora local de cada região. O mundo está dividido em 24 fusos horários principais, cada um com uma diferença de uma hora em relação aos fusos adjacentes. O fuso horário de referência é o UTC (Tempo Universal Coordenado), também conhecido como GMT (Hora de Greenwich).
+            </p>
+            <p>
+                Algumas regiões também adotam o horário de verão, que avança os relógios em uma hora durante os meses mais quentes do ano. Isso pode afetar a diferença de horário entre cidades. A ferramenta de Hora Mundial do TimerHub leva em consideração essas variações automaticamente.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Aplicações Práticas da Hora Mundial</h2>
+            <ul>
+                <li><strong>Trabalho Remoto:</strong> Coordene reuniões com equipes em diferentes fusos horários</li>
+                <li><strong>Viagens:</strong> Saiba que horas são em seu destino antes de partir</li>
+                <li><strong>Negócios Internacionais:</strong> Agende chamadas e transações no horário correto</li>
+                <li><strong>Educação Online:</strong> Participe de aulas e webinars em horários corretos</li>
+                <li><strong>Esportes:</strong> Acompanhe eventos esportivos internacionais</li>
+                <li><strong>Comunicação:</strong> Ligue para amigos e familiares em horários apropriados</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Por Que Escolher a Hora Mundial TimerHub?</h2>
+            <p>
+                Nossa ferramenta de Hora Mundial oferece várias vantagens:
+            </p>
+            <ul>
+                <li><strong>Precisão:</strong> Sincronizada com padrões de tempo internacionais</li>
+                <li><strong>Facilidade:</strong> Interface intuitiva e fácil de usar</li>
+                <li><strong>Flexibilidade:</strong> Adicione quantas cidades desejar</li>
+                <li><strong>Gratuito:</strong> Sem custos ou assinaturas</li>
+                <li><strong>Rápido:</strong> Carrega instantaneamente</li>
+                <li><strong>Responsivo:</strong> Funciona em todos os dispositivos</li>
+                <li><strong>Privacidade:</strong> Não coletamos dados pessoais</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Dicas para Usar a Hora Mundial</h2>
+            <ul>
+                <li>Salve as cidades que você mais frequentemente consulta nos favoritos</li>
+                <li>Use a ferramenta em conjunto com o relógio online para ter uma visão completa</li>
+                <li>Combine com o cronômetro para gerenciar atividades com pessoas em diferentes fusos</li>
+                <li>Compartilhe o link com colegas que também trabalham internacionalmente</li>
+                <li>Verifique regularmente para estar ciente de mudanças de horário de verão</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                <strong>TimerHub</strong> - Suas ferramentas de tempo online gratuitas.
+            </p>
+            <div class="footer-links">
+                <a href="relogio-online.html">Relógio Online</a>
+                <a href="cronometro-online.html">Cronômetro Online</a>
+                <a href="hora-mundial.html">Hora Mundial</a>
+                <a href="privacy.html">Privacidade</a>
+                <a href="terms.html">Termos de Uso</a>
+                <a href="contact.html">Contato</a>
+            </div>
+            <p class="footer-text" style="font-size: 12px; margin-top: 20px;">
+                © 2024 TimerHub. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ========================================
+        // RELÓGIO MUNDIAL
+        // ========================================
+        let cities = [
+            { name: 'São Paulo', timezone: 'America/Sao_Paulo' },
+            { name: 'Nova York', timezone: 'America/New_York' },
+            { name: 'Londres', timezone: 'Europe/London' },
+            { name: 'Paris', timezone: 'Europe/Paris' },
+            { name: 'Tóquio', timezone: 'Asia/Tokyo' }
+        ];
+
+        const timezoneMap = {
+            'tokyo': 'Asia/Tokyo',
+            'tóquio': 'Asia/Tokyo',
+            'sydney': 'Australia/Sydney',
+            'hong kong': 'Asia/Hong_Kong',
+            'hong-kong': 'Asia/Hong_Kong',
+            'bangkok': 'Asia/Bangkok',
+            'dubai': 'Asia/Dubai',
+            'mumbai': 'Asia/Kolkata',
+            'delhi': 'Asia/Kolkata',
+            'singapura': 'Asia/Singapore',
+            'singapore': 'Asia/Singapore',
+            'kuala lumpur': 'Asia/Kuala_Lumpur',
+            'jacarta': 'Asia/Jakarta',
+            'jakarta': 'Asia/Jakarta',
+            'istambul': 'Europe/Istanbul',
+            'istanbul': 'Europe/Istanbul',
+            'moscou': 'Europe/Moscow',
+            'moscow': 'Europe/Moscow',
+            'berlim': 'Europe/Berlin',
+            'berlin': 'Europe/Berlin',
+            'madri': 'Europe/Madrid',
+            'madrid': 'Europe/Madrid',
+            'roma': 'Europe/Rome',
+            'rome': 'Europe/Rome',
+            'amsterdam': 'Europe/Amsterdam',
+            'bruxelas': 'Europe/Brussels',
+            'brussels': 'Europe/Brussels',
+            'zurique': 'Europe/Zurich',
+            'zurich': 'Europe/Zurich',
+            'viena': 'Europe/Vienna',
+            'vienna': 'Europe/Vienna',
+            'praga': 'Europe/Prague',
+            'prague': 'Europe/Prague',
+            'varsóvia': 'Europe/Warsaw',
+            'warsaw': 'Europe/Warsaw',
+            'estocolmo': 'Europe/Stockholm',
+            'stockholm': 'Europe/Stockholm',
+            'oslo': 'Europe/Oslo',
+            'copenhague': 'Europe/Copenhagen',
+            'copenhagen': 'Europe/Copenhagen',
+            'atenas': 'Europe/Athens',
+            'athens': 'Europe/Athens',
+            'buenos aires': 'America/Argentina/Buenos_Aires',
+            'buenos-aires': 'America/Argentina/Buenos_Aires',
+            'santiago': 'America/Santiago',
+            'lima': 'America/Lima',
+            'bogotá': 'America/Bogota',
+            'bogota': 'America/Bogota',
+            'cidade do méxico': 'America/Mexico_City',
+            'mexico city': 'America/Mexico_City',
+            'méxico': 'America/Mexico_City',
+            'mexico': 'America/Mexico_City',
+            'toronto': 'America/Toronto',
+            'vancouver': 'America/Vancouver',
+            'los angeles': 'America/Los_Angeles',
+            'los-angeles': 'America/Los_Angeles',
+            'chicago': 'America/Chicago',
+            'denver': 'America/Denver',
+            'phoenix': 'America/Phoenix',
+            'anchorage': 'America/Anchorage',
+            'honolulu': 'Pacific/Honolulu',
+            'auckland': 'Pacific/Auckland',
+            'fiji': 'Pacific/Fiji',
+            'samoa': 'Pacific/Apia',
+            'tonga': 'Pacific/Tongatapu',
+            'cairo': 'Africa/Cairo',
+            'johannesburgo': 'Africa/Johannesburg',
+            'johannesburg': 'Africa/Johannesburg',
+            'lagos': 'Africa/Lagos',
+            'nairobi': 'Africa/Nairobi',
+            'casablanca': 'Africa/Casablanca',
+            'accra': 'Africa/Accra',
+            'dacar': 'Africa/Dakar',
+            'dakar': 'Africa/Dakar'
+        };
+
+        function updateWorldClock() {
+            const worldClockList = document.getElementById('worldClockList');
+            worldClockList.innerHTML = '';
+
+            cities.forEach((city, index) => {
+                const now = new Date();
+                const cityTime = new Date(now.toLocaleString('en-US', { timeZone: city.timezone }));
+
+                const hours = String(cityTime.getHours()).padStart(2, '0');
+                const minutes = String(cityTime.getMinutes()).padStart(2, '0');
+                const seconds = String(cityTime.getSeconds()).padStart(2, '0');
+
+                const cityCard = document.createElement('div');
+                cityCard.className = 'city-card';
+                cityCard.innerHTML = `
+                    <button class="remove-city" onclick="removeCity(${index})">✕</button>
+                    <div class="city-name">${city.name}</div>
+                    <div class="city-time">${hours}:${minutes}:${seconds}</div>
+                    <div class="city-timezone">${city.timezone}</div>
+                `;
+                worldClockList.appendChild(cityCard);
+            });
+        }
+
+        function addCity() {
+            const input = document.getElementById('cityInput');
+            const cityName = input.value.trim();
+
+            if (!cityName) {
+                alert('Digite o nome de uma cidade');
+                return;
+            }
+
+            const timezone = timezoneMap[cityName.toLowerCase()];
+
+            if (!timezone) {
+                alert('Cidade não encontrada. Tente outro nome.');
+                return;
+            }
+
+            const cityExists = cities.some(c => c.timezone === timezone);
+            if (cityExists) {
+                alert('Esta cidade já foi adicionada');
+                return;
+            }
+
+            cities.push({ name: cityName, timezone: timezone });
+            input.value = '';
+            updateWorldClock();
+        }
+
+        function removeCity(index) {
+            cities.splice(index, 1);
+            updateWorldClock();
+        }
+
+        document.getElementById('cityInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addCity();
+            }
+        });
+
+        setInterval(updateWorldClock, 1000);
+        updateWorldClock();
+    </script>
+</body>
+</html>

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cronômetro Online Gratuito - Cronômetro preciso com histórico de tempos e Timer com atalhos de 1, 5, 10 e 15 minutos. Perfeito para treinos e estudos.">
+    <meta name="keywords" content="cronômetro online, cronômetro digital, timer online, cronômetro gratuito, contador de tempo">
+    <meta name="author" content="TimerHub">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Cronômetro Online Gratuito com Timer | TimerHub</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff006e;
+            --bg-dark: #0f0f1e;
+            --bg-card: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-color: #2d2d44;
+            --shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .breadcrumb {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            border-color: var(--primary-color);
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* STOPWATCH SECTION */
+        .stopwatch-section {
+            background: rgba(0, 212, 255, 0.08);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stopwatch-display {
+            font-size: 96px;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--primary-color);
+            margin: 40px 0;
+            letter-spacing: 4px;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .timer-display {
+            font-size: 96px;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--primary-color);
+            margin: 40px 0;
+            letter-spacing: 4px;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #00a8cc);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 3px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .btn-danger {
+            background: rgba(255, 0, 110, 0.2);
+            border: 3px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-danger:hover {
+            background: rgba(255, 0, 110, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .btn-small {
+            padding: 10px 16px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* TIMER PRESETS */
+        .timer-presets {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        /* HISTORY */
+        .history-list {
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .history-item {
+            padding: 10px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            font-family: 'Courier New', monospace;
+            color: var(--primary-color);
+            font-size: 14px;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-empty {
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* CONTENT SECTIONS */
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 22px;
+            margin: 30px 0 15px 0;
+            color: var(--text-primary);
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style-position: inside;
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(15, 15, 30, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .stopwatch-section {
+                padding: 30px;
+            }
+
+            .stopwatch-display,
+            .timer-display {
+                font-size: 56px;
+                letter-spacing: 2px;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 30px 15px;
+            }
+
+            .stopwatch-section {
+                padding: 20px;
+            }
+
+            .stopwatch-display,
+            .timer-display {
+                font-size: 42px;
+                letter-spacing: 1px;
+            }
+
+            .btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .timer-presets {
+                gap: 8px;
+            }
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 50px rgba(0, 212, 255, 0.6);
+            }
+        }
+
+        .stopwatch-display,
+        .timer-display {
+            animation: glow 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⏱️</span>
+                <span>TimerHub</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="relogio-online.html">Relógio</a></li>
+                    <li><a href="hora-mundial.html">Hora Mundial</a></li>
+                    <li><a href="contact.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> / Cronômetro Online
+        </div>
+
+        <h1>Cronômetro Online Gratuito com Timer</h1>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('stopwatch', this)">Cronômetro</button>
+            <button class="tab-btn" onclick="switchTab('timer', this)">Timer</button>
+        </div>
+
+        <!-- CRONÔMETRO TAB -->
+        <div id="stopwatch" class="tab-content active">
+            <section class="stopwatch-section">
+                <div class="stopwatch-display" id="stopwatchDisplay">00:00:00</div>
+                
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="startStopwatch()">Iniciar</button>
+                    <button class="btn btn-secondary" onclick="pauseStopwatch()">Pausar</button>
+                    <button class="btn btn-danger" onclick="resetStopwatch()">Resetar</button>
+                </div>
+
+                <div class="history-list" id="stopwatchHistory">
+                    <div class="history-empty">Histórico vazio</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- TIMER TAB -->
+        <div id="timer" class="tab-content">
+            <section class="stopwatch-section">
+                <div class="timer-display" id="timerDisplay">00:00:00</div>
+                
+                <div class="timer-presets">
+                    <button class="btn btn-small btn-primary" onclick="setTimer(60)">1 min</button>
+                    <button class="btn btn-small btn-primary" onclick="setTimer(300)">5 min</button>
+                    <button class="btn btn-small btn-primary" onclick="setTimer(600)">10 min</button>
+                    <button class="btn btn-small btn-primary" onclick="setTimer(900)">15 min</button>
+                </div>
+                
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="startTimer()">Iniciar</button>
+                    <button class="btn btn-secondary" onclick="pauseTimer()">Pausar</button>
+                    <button class="btn btn-danger" onclick="resetTimer()">Resetar</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTENT SECTIONS -->
+        <section class="content-section">
+            <h2>O que é um Cronômetro Online?</h2>
+            <p>
+                Um cronômetro online é uma ferramenta digital que mede o tempo decorrido entre o início e o fim de uma atividade. Diferentemente de um relógio que mostra a hora do dia, o cronômetro funciona como um contador de tempo progressivo. O cronômetro online do TimerHub é uma solução gratuita, precisa e acessível que funciona em qualquer navegador web.
+            </p>
+            <p>
+                Nosso cronômetro online é ideal para atletas que desejam medir tempos de treino, estudantes que precisam gerenciar o tempo de estudo, profissionais que trabalham com projetos com prazos específicos, e qualquer pessoa que necessite cronometrar atividades com precisão.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Características do Cronômetro e Timer TimerHub</h2>
+            <ul>
+                <li><strong>Cronômetro Preciso:</strong> Mede tempo com precisão de centésimos de segundo</li>
+                <li><strong>Histórico de Tempos:</strong> Salva automaticamente seus tempos para análise posterior</li>
+                <li><strong>Timer com Atalhos:</strong> Botões rápidos para 1, 5, 10 e 15 minutos</li>
+                <li><strong>Alerta Sonoro:</strong> Notificação discreta quando o timer termina</li>
+                <li><strong>Controles Intuitivos:</strong> Botões para iniciar, pausar e resetar</li>
+                <li><strong>Interface Limpa:</strong> Design moderno focado na funcionalidade</li>
+                <li><strong>Totalmente Gratuito:</strong> Sem anúncios ou necessidade de cadastro</li>
+                <li><strong>Responsivo:</strong> Funciona perfeitamente em todos os dispositivos</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Como Usar o Cronômetro Online</h2>
+            <p>
+                Usar o cronômetro online é muito simples. Clique no botão "Iniciar" para começar a cronometrar. O tempo começará a ser contado em tempo real. Você pode clicar em "Pausar" para interromper a cronometragem sem resetar o tempo, permitindo que você retome depois. Quando terminar, clique em "Resetar" para limpar o cronômetro e começar novamente.
+            </p>
+            <p>
+                Cada vez que você reseta o cronômetro, o tempo é salvo automaticamente no histórico. Isso permite que você acompanhe múltiplas medições e compare seus tempos ao longo do tempo.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h3>Como Usar o Timer Online</h3>
+            <p>
+                O timer funciona de forma inversa ao cronômetro. Em vez de contar para cima, ele conta para baixo a partir de um tempo definido. Clique em um dos botões de atalho (1, 5, 10 ou 15 minutos) para definir o tempo desejado. Você também pode definir um tempo personalizado. Clique em "Iniciar" para começar a contagem regressiva.
+            </p>
+            <p>
+                Quando o tempo chegar a zero, você ouvirá um alerta sonoro discreto. O timer é perfeito para gerenciar intervalos de trabalho, pausas, tempo de cozimento, ou qualquer atividade que necessite de um limite de tempo.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Aplicações Práticas do Cronômetro Online</h2>
+            <ul>
+                <li><strong>Treinos Físicos:</strong> Meça o tempo de séries, intervalos e exercícios</li>
+                <li><strong>Estudos:</strong> Controle o tempo de estudo com técnicas como Pomodoro</li>
+                <li><strong>Trabalho:</strong> Gerencie o tempo de projetos e tarefas</li>
+                <li><strong>Cozinha:</strong> Meça o tempo de cozimento de receitas</li>
+                <li><strong>Jogos:</strong> Cronometra competições e desafios</li>
+                <li><strong>Educação:</strong> Professores podem usar para controlar tempo de provas</li>
+                <li><strong>Produtividade:</strong> Implemente técnicas de gestão de tempo</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Por Que Escolher o Cronômetro TimerHub?</h2>
+            <p>
+                Nosso cronômetro online oferece várias vantagens em relação a outras soluções:
+            </p>
+            <ul>
+                <li><strong>Precisão:</strong> Medição exata com atualização contínua</li>
+                <li><strong>Facilidade de Uso:</strong> Interface intuitiva sem curva de aprendizado</li>
+                <li><strong>Histórico:</strong> Acompanhe seus tempos ao longo do tempo</li>
+                <li><strong>Gratuito:</strong> Sem custos ou assinaturas</li>
+                <li><strong>Acessibilidade:</strong> Funciona em qualquer navegador moderno</li>
+                <li><strong>Privacidade:</strong> Não coletamos dados pessoais</li>
+                <li><strong>Velocidade:</strong> Carrega instantaneamente</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Dicas para Maximizar o Uso</h2>
+            <ul>
+                <li>Use a técnica Pomodoro: 25 minutos de trabalho + 5 minutos de pausa</li>
+                <li>Combine o cronômetro com o relógio mundial para treinos com pessoas em outros fusos horários</li>
+                <li>Revise seu histórico de tempos para identificar padrões e melhorias</li>
+                <li>Use em tela cheia (F11) para uma experiência mais focada</li>
+                <li>Marque nos favoritos para acesso rápido sempre que precisar</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                <strong>TimerHub</strong> - Suas ferramentas de tempo online gratuitas.
+            </p>
+            <div class="footer-links">
+                <a href="relogio-online.html">Relógio Online</a>
+                <a href="cronometro-online.html">Cronômetro Online</a>
+                <a href="hora-mundial.html">Hora Mundial</a>
+                <a href="privacy.html">Privacidade</a>
+                <a href="terms.html">Termos de Uso</a>
+                <a href="contact.html">Contato</a>
+            </div>
+            <p class="footer-text" style="font-size: 12px; margin-top: 20px;">
+                © 2024 TimerHub. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ========================================
+        // ABAS (TABS)
+        // ========================================
+        function switchTab(tabName, element) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            element.classList.add('active');
+        }
+
+        // ========================================
+        // CRONÔMETRO
+        // ========================================
+        let stopwatchTime = 0;
+        let stopwatchInterval = null;
+        let stopwatchRunning = false;
+        let stopwatchHistory = [];
+
+        function formatStopwatchTime(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const milliseconds = Math.floor((ms % 1000) / 10);
+
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;
+        }
+
+        function updateStopwatchDisplay() {
+            document.getElementById('stopwatchDisplay').textContent = formatStopwatchTime(stopwatchTime);
+        }
+
+        function startStopwatch() {
+            if (!stopwatchRunning) {
+                stopwatchRunning = true;
+                const startTime = Date.now() - stopwatchTime;
+
+                stopwatchInterval = setInterval(() => {
+                    stopwatchTime = Date.now() - startTime;
+                    updateStopwatchDisplay();
+                }, 10);
+            }
+        }
+
+        function pauseStopwatch() {
+            stopwatchRunning = false;
+            clearInterval(stopwatchInterval);
+        }
+
+        function resetStopwatch() {
+            if (stopwatchTime > 0) {
+                stopwatchHistory.unshift(formatStopwatchTime(stopwatchTime));
+                if (stopwatchHistory.length > 10) {
+                    stopwatchHistory.pop();
+                }
+                updateStopwatchHistory();
+            }
+
+            stopwatchRunning = false;
+            clearInterval(stopwatchInterval);
+            stopwatchTime = 0;
+            updateStopwatchDisplay();
+        }
+
+        function updateStopwatchHistory() {
+            const historyDiv = document.getElementById('stopwatchHistory');
+            if (stopwatchHistory.length === 0) {
+                historyDiv.innerHTML = '<div class="history-empty">Histórico vazio</div>';
+            } else {
+                historyDiv.innerHTML = stopwatchHistory.map((time, index) => 
+                    `<div class="history-item">${index + 1}. ${time}</div>`
+                ).join('');
+            }
+        }
+
+        // ========================================
+        // TIMER
+        // ========================================
+        let timerTime = 0;
+        let timerInterval = null;
+        let timerRunning = false;
+
+        function formatTimerTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function updateTimerDisplay() {
+            document.getElementById('timerDisplay').textContent = formatTimerTime(timerTime);
+        }
+
+        function setTimer(seconds) {
+            if (!timerRunning) {
+                timerTime = seconds;
+                updateTimerDisplay();
+            }
+        }
+
+        function startTimer() {
+            if (!timerRunning && timerTime > 0) {
+                timerRunning = true;
+                const startTime = Date.now();
+                const initialTime = timerTime;
+
+                timerInterval = setInterval(() => {
+                    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                    timerTime = initialTime - elapsed;
+
+                    if (timerTime <= 0) {
+                        timerTime = 0;
+                        timerRunning = false;
+                        clearInterval(timerInterval);
+                        playTimerAlert();
+                    }
+
+                    updateTimerDisplay();
+                }, 100);
+            }
+        }
+
+        function pauseTimer() {
+            timerRunning = false;
+            clearInterval(timerInterval);
+        }
+
+        function resetTimer() {
+            timerRunning = false;
+            clearInterval(timerInterval);
+            timerTime = 0;
+            updateTimerDisplay();
+        }
+
+        function playTimerAlert() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+        }
+
+        // ========================================
+        // INICIALIZAÇÃO
+        // ========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStopwatchDisplay();
+            updateTimerDisplay();
+        });
+    </script>
+</body>
+</html>
