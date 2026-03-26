@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TimerHub - Relógio online, cronômetro e hora mundial em tempo real. Ferramentas de tempo simples, rápidas e precisas para seu dia a dia.">
+    <meta name="keywords" content="relógio online, cronômetro online, hora mundial, relógio digital, hora exata">
+    <meta name="author" content="TimerHub">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>TimerHub - Relógio Online, Cronômetro e Hora Mundial</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff006e;
+            --bg-dark: #0f0f1e;
+            --bg-card: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-color: #2d2d44;
+            --shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* AD SPACE - TOPO */
+        .ad-space-top {
+            background: var(--bg-card);
+            border: 2px dashed var(--border-color);
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        /* TOOLS GRID */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* CARD STYLES */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+        }
+
+        .card-icon {
+            font-size: 28px;
+        }
+
+        /* CLOCK CARD */
+        .clock-display {
+            font-size: 56px;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--primary-color);
+            margin: 30px 0;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .date-display {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .format-toggle {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .format-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .format-btn.active {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            border-color: var(--primary-color);
+        }
+
+        .format-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* STOPWATCH CARD */
+        .stopwatch-display {
+            font-size: 48px;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--primary-color);
+            margin: 30px 0;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .stopwatch-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #00a8cc);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: rgba(255, 0, 110, 0.2);
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-danger:hover {
+            background: rgba(255, 0, 110, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* WORLD CLOCK */
+        .world-clock-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .city-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .city-card:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .city-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        .city-time {
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .city-timezone {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 3px;
+        }
+
+        /* AD SPACE - MEIO */
+        .ad-space-middle {
+            background: var(--bg-card);
+            border: 2px dashed var(--border-color);
+            padding: 30px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin: 60px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(15, 15, 30, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* AD SPACE - FOOTER */
+        .ad-space-footer {
+            background: var(--bg-card);
+            border: 2px dashed var(--border-color);
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin: 30px auto;
+            border-radius: 8px;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .clock-display {
+                font-size: 42px;
+            }
+
+            .stopwatch-display {
+                font-size: 36px;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .city-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .stopwatch-controls {
+                gap: 8px;
+            }
+
+            .btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .clock-display {
+                font-size: 32px;
+            }
+
+            .stopwatch-display {
+                font-size: 28px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .btn {
+                padding: 10px 12px;
+                font-size: 11px;
+            }
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        /* GLOW EFFECT */
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+            }
+        }
+
+        .clock-display,
+        .stopwatch-display {
+            animation: glow 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">⏱️</span>
+                <span>TimerHub</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#clock">Relógio</a></li>
+                    <li><a href="#stopwatch">Cronômetro</a></li>
+                    <li><a href="#worldclock">Hora Mundial</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- AD SPACE - TOPO -->
+    <div class="ad-space-top">
+        📢 Espaço para anúncio (Google AdSense)
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <h1>TimerHub</h1>
+            <p class="hero-subtitle">Ferramentas de Tempo Simples, Rápidas e Precisas</p>
+            <p class="hero-description">
+                Bem-vindo ao TimerHub, sua plataforma completa para gerenciar o tempo. Acesse um relógio digital em tempo real, 
+                um cronômetro preciso e a hora de qualquer cidade do mundo. Tudo que você precisa para otimizar seu dia a dia, 
+                sem complicações. Rápido, leve e 100% online.
+            </p>
+        </section>
+
+        <!-- TOOLS GRID -->
+        <div class="tools-grid">
+            <!-- RELÓGIO DIGITAL -->
+            <section class="card" id="clock">
+                <h2 class="card-title">
+                    <span class="card-icon">🕐</span>
+                    Relógio Digital
+                </h2>
+                
+                <div class="date-display" id="dateDisplay">Carregando...</div>
+                
+                <div class="clock-display" id="clockDisplay">00:00:00</div>
+                
+                <div class="format-toggle">
+                    <button class="format-btn active" onclick="toggleClockFormat(12, this)">12 Horas</button>
+                    <button class="format-btn" onclick="toggleClockFormat(24, this)">24 Horas</button>
+                </div>
+                
+                <p style="text-align: center; color: var(--text-secondary); font-size: 13px;">
+                    Hora exata em tempo real com atualização automática a cada segundo.
+                </p>
+            </section>
+
+            <!-- CRONÔMETRO -->
+            <section class="card" id="stopwatch">
+                <h2 class="card-title">
+                    <span class="card-icon">⏱️</span>
+                    Cronômetro
+                </h2>
+                
+                <div class="stopwatch-display" id="stopwatchDisplay">00:00:00</div>
+                
+                <div class="stopwatch-controls">
+                    <button class="btn btn-primary" onclick="startStopwatch()">Iniciar</button>
+                    <button class="btn btn-secondary" onclick="pauseStopwatch()">Pausar</button>
+                    <button class="btn btn-danger" onclick="resetStopwatch()">Resetar</button>
+                </div>
+                
+                <p style="text-align: center; color: var(--text-secondary); font-size: 13px; margin-top: 20px;">
+                    Cronômetro preciso com minutos, segundos e milissegundos.
+                </p>
+            </section>
+
+            <!-- RELÓGIO MUNDIAL -->
+            <section class="card" id="worldclock">
+                <h2 class="card-title">
+                    <span class="card-icon">🌍</span>
+                    Hora Mundial
+                </h2>
+                
+                <div class="world-clock-list" id="worldClockList">
+                    <!-- Será preenchido por JavaScript -->
+                </div>
+                
+                <p style="text-align: center; color: var(--text-secondary); font-size: 13px; margin-top: 20px;">
+                    Horário em tempo real das principais cidades do mundo.
+                </p>
+            </section>
+        </div>
+
+        <!-- AD SPACE - MEIO -->
+        <div class="ad-space-middle">
+            📢 Espaço para anúncio (Google AdSense)
+        </div>
+    </main>
+
+    <!-- AD SPACE - FOOTER -->
+    <div class="ad-space-footer">
+        📢 Espaço para anúncio (Google AdSense)
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                <strong>TimerHub</strong> - Suas ferramentas de tempo online. Relógio, cronômetro e hora mundial em um único lugar.
+            </p>
+            <div class="footer-links">
+                <a href="#clock">Relógio Online</a>
+                <a href="#stopwatch">Cronômetro Online</a>
+                <a href="#worldclock">Hora Mundial</a>
+                <a href="#">Privacidade</a>
+                <a href="#">Contato</a>
+            </div>
+            <p class="footer-text" style="font-size: 12px; margin-top: 20px;">
+                © 2024 TimerHub. Todos os direitos reservados. | Otimizado para SEO
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ========================================
+        // RELÓGIO DIGITAL
+        // ========================================
+        let clockFormat = 12; // 12 ou 24 horas
+
+        function updateClock() {
+            const now = new Date();
+            const clockDisplay = document.getElementById('clockDisplay');
+            const dateDisplay = document.getElementById('dateDisplay');
+
+            // Formatar hora
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            if (clockFormat === 12) {
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12 || 12;
+                hours = String(hours).padStart(2, '0');
+                clockDisplay.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+            } else {
+                hours = String(hours).padStart(2, '0');
+                clockDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+
+            // Formatar data
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('pt-BR', options);
+            dateDisplay.textContent = dateStr;
+        }
+
+        function toggleClockFormat(format, element) {
+            clockFormat = format;
+            document.querySelectorAll('.format-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            updateClock();
+        }
+
+        // Atualizar relógio a cada segundo
+        setInterval(updateClock, 1000);
+        updateClock(); // Atualizar imediatamente
+
+        // ========================================
+        // CRONÔMETRO
+        // ========================================
+        let stopwatchTime = 0;
+        let stopwatchInterval = null;
+        let stopwatchRunning = false;
+
+        function formatStopwatchTime(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const milliseconds = Math.floor((ms % 1000) / 10); // Centésimos
+
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;
+        }
+
+        function updateStopwatchDisplay() {
+            document.getElementById('stopwatchDisplay').textContent = formatStopwatchTime(stopwatchTime);
+        }
+
+        function startStopwatch() {
+            if (!stopwatchRunning) {
+                stopwatchRunning = true;
+                const startTime = Date.now() - stopwatchTime;
+
+                stopwatchInterval = setInterval(() => {
+                    stopwatchTime = Date.now() - startTime;
+                    updateStopwatchDisplay();
+                }, 10);
+            }
+        }
+
+        function pauseStopwatch() {
+            stopwatchRunning = false;
+            clearInterval(stopwatchInterval);
+        }
+
+        function resetStopwatch() {
+            stopwatchRunning = false;
+            clearInterval(stopwatchInterval);
+            stopwatchTime = 0;
+            updateStopwatchDisplay();
+        }
+
+        // ========================================
+        // RELÓGIO MUNDIAL
+        // ========================================
+        const cities = [
+            { name: 'São Paulo', timezone: 'America/Sao_Paulo' },
+            { name: 'Nova York', timezone: 'America/New_York' },
+            { name: 'Londres', timezone: 'Europe/London' },
+            { name: 'Paris', timezone: 'Europe/Paris' },
+            { name: 'Tóquio', timezone: 'Asia/Tokyo' }
+        ];
+
+        function updateWorldClock() {
+            const worldClockList = document.getElementById('worldClockList');
+            worldClockList.innerHTML = '';
+
+            cities.forEach(city => {
+                const now = new Date();
+                const cityTime = new Date(now.toLocaleString('en-US', { timeZone: city.timezone }));
+
+                const hours = String(cityTime.getHours()).padStart(2, '0');
+                const minutes = String(cityTime.getMinutes()).padStart(2, '0');
+                const seconds = String(cityTime.getSeconds()).padStart(2, '0');
+
+                const cityCard = document.createElement('div');
+                cityCard.className = 'city-card';
+                cityCard.innerHTML = `
+                    <div>
+                        <div class="city-name">${city.name}</div>
+                        <div class="city-timezone">${city.timezone}</div>
+                    </div>
+                    <div class="city-time">${hours}:${minutes}:${seconds}</div>
+                `;
+                worldClockList.appendChild(cityCard);
+            });
+        }
+
+        // Atualizar relógio mundial a cada segundo
+        setInterval(updateWorldClock, 1000);
+        updateWorldClock(); // Atualizar imediatamente
+
+        // ========================================
+        // INICIALIZAÇÃO
+        // ========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            updateClock();
+            updateWorldClock();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# Ignorar arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar arquivos de cache e temporários
+*.log
+*.tmp
+*.bak
+
+# Ignorar diretórios de pacotes (se houver)
+node_modules/
+bower_components/
+
+# Ignorar arquivos de build ou gerados
+dist/
+build/
+
+# Ignorar arquivos de dados sensíveis ou de configuração local
+.env
+.env.local
+
+# Ignorar o próprio arquivo do projeto se for um ambiente de desenvolvimento
+# timerhub.html
