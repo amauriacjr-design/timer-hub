@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TimerHub - Relógio online, cronômetro e hora mundial em tempo real. Ferramentas de tempo simples, rápidas e precisas para seu dia a dia.">
-    <meta name="keywords" content="relógio online, cronômetro online, hora mundial, relógio digital, hora exata, ferramentas de tempo">
+    <meta name="description" content="TimerHub - Cronômetro online, timer e relógio grátis. Ferramentas simples, rápidas e precisas. Use direto no navegador sem instalação.">
+    <meta name="keywords" content="cronômetro online, timer online, relógio online, hora mundial, ferramentas de tempo">
     <meta name="author" content="TimerHub">
     <meta name="theme-color" content="#1a1a2e">
-    <title>TimerHub - Relógio Online, Cronômetro e Hora Mundial Gratuitos</title>
+    <title>TimerHub - Cronômetro Online Grátis | Timer e Relógio</title>
     
     <style>
         * {
@@ -32,7 +32,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
             color: var(--text-primary);
             line-height: 1.6;
@@ -42,27 +42,26 @@
 
         /* HEADER */
         header {
-            background: rgba(15, 15, 30, 0.95);
+            background: rgba(15, 15, 30, 0.98);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
-            padding: 20px 0;
+            padding: 16px 20px;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
             box-shadow: var(--shadow);
         }
 
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
@@ -70,12 +69,33 @@
             background-clip: text;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             text-decoration: none;
+            white-space: nowrap;
         }
 
         .logo-icon {
-            font-size: 32px;
+            font-size: 28px;
+        }
+
+        /* MENU HAMBÚRGUER */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-toggle.active {
+            color: var(--secondary-color);
         }
 
         .nav-links {
@@ -96,16 +116,71 @@
             color: var(--primary-color);
         }
 
-        /* HERO SECTION */
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(255, 0, 110, 0.05) 100%);
+        /* MOBILE MENU */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 0;
+            width: 100%;
+            max-width: 280px;
+            background: rgba(15, 15, 30, 0.98);
+            border-left: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            animation: slideIn 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .mobile-menu li {
             border-bottom: 1px solid var(--border-color);
         }
 
+        .mobile-menu a {
+            display: block;
+            padding: 16px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary-color);
+            padding-left: 24px;
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: calc(100vh - 200px);
+        }
+
         h1 {
-            font-size: 56px;
+            font-size: 42px;
             margin-bottom: 20px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
@@ -114,112 +189,66 @@
             line-height: 1.2;
         }
 
-        .hero-subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-description {
+        .intro-text {
             font-size: 16px;
             color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 50px;
+            margin-bottom: 40px;
             line-height: 1.8;
+            max-width: 600px;
         }
 
         /* FEATURES GRID */
         .features {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
         }
 
         .feature-card {
             background: rgba(0, 212, 255, 0.08);
             border: 2px solid rgba(0, 212, 255, 0.3);
             border-radius: 12px;
-            padding: 40px;
+            padding: 30px;
             text-align: center;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
         }
 
         .feature-card:hover {
             background: rgba(0, 212, 255, 0.15);
             border-color: var(--primary-color);
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             box-shadow: 0 12px 30px rgba(0, 212, 255, 0.2);
         }
 
         .feature-icon {
             font-size: 48px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .feature-card h2 {
-            font-size: 24px;
-            margin-bottom: 15px;
+            font-size: 22px;
             color: var(--primary-color);
+            margin-bottom: 10px;
         }
 
         .feature-card p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
             font-size: 14px;
-        }
-
-        .feature-card a {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, var(--primary-color), #00a8cc);
-            color: var(--bg-dark);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .feature-card a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
-        }
-
-        /* SECTION */
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .section h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-            color: var(--primary-color);
-        }
-
-        .section p {
-            font-size: 16px;
             color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         /* FOOTER */
         footer {
             background: rgba(15, 15, 30, 0.95);
             border-top: 1px solid var(--border-color);
-            padding: 40px 20px;
+            padding: 30px 20px;
             text-align: center;
             color: var(--text-secondary);
+            margin-top: 80px;
         }
 
         .footer-content {
@@ -228,8 +257,8 @@
         }
 
         .footer-text {
-            font-size: 14px;
-            margin-bottom: 15px;
+            font-size: 13px;
+            margin-bottom: 12px;
         }
 
         .footer-links {
@@ -237,13 +266,13 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             transition: color 0.3s ease;
         }
 
@@ -253,34 +282,45 @@
 
         /* RESPONSIVIDADE */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
             h1 {
-                font-size: 36px;
+                font-size: 32px;
             }
 
-            .hero {
-                padding: 50px 20px;
-            }
-
-            .hero-subtitle {
-                font-size: 18px;
+            .container {
+                padding: 30px 16px;
             }
 
             .features {
                 grid-template-columns: 1fr;
-                padding: 50px 20px;
             }
 
-            .nav-links {
-                gap: 15px;
+            .feature-card {
+                padding: 24px;
             }
 
-            .nav-links a {
-                font-size: 12px;
+            .feature-card h2 {
+                font-size: 20px;
             }
 
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
+            header {
+                padding: 14px 16px;
+            }
+
+            .logo {
+                font-size: 20px;
+                gap: 6px;
+            }
+
+            .logo-icon {
+                font-size: 24px;
             }
         }
 
@@ -289,39 +329,34 @@
                 font-size: 28px;
             }
 
-            .hero {
-                padding: 40px 15px;
+            .intro-text {
+                font-size: 14px;
             }
 
-            .hero-subtitle {
-                font-size: 16px;
+            .container {
+                padding: 24px 14px;
+                min-height: calc(100vh - 180px);
+            }
+
+            .feature-icon {
+                font-size: 40px;
+            }
+
+            .feature-card h2 {
+                font-size: 18px;
+            }
+
+            .feature-card p {
+                font-size: 13px;
             }
 
             .logo {
-                font-size: 24px;
+                font-size: 18px;
             }
 
-            .nav-links {
-                flex-direction: column;
-                gap: 8px;
-                text-align: center;
+            .logo-icon {
+                font-size: 22px;
             }
-        }
-
-        /* ANIMAÇÕES */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .feature-card {
-            animation: fadeIn 0.8s ease-out;
         }
     </style>
 </head>
@@ -333,79 +368,112 @@
                 <span class="logo-icon">⏱️</span>
                 <span>TimerHub</span>
             </a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="relogio-online.html">Relógio Online</a></li>
+                    <li><a href="relogio-online.html">Relógio</a></li>
                     <li><a href="cronometro-online.html">Cronômetro</a></li>
+                    <li><a href="timer-online.html">Timer</a></li>
                     <li><a href="hora-mundial.html">Hora Mundial</a></li>
-                    <li><a href="contact.html">Contato</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <h1>TimerHub - Ferramentas de Tempo Online</h1>
-        <p class="hero-subtitle">Relógio, Cronômetro e Hora Mundial em Tempo Real</p>
-        <p class="hero-description">
-            Bem-vindo ao TimerHub, sua plataforma completa de ferramentas de tempo online. Oferecemos relógio digital preciso, cronômetro profissional e consulta de horário mundial instantânea. Todas as ferramentas são gratuitas, rápidas e otimizadas para funcionar perfeitamente em qualquer dispositivo.
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="relogio-online.html">Relógio</a></li>
+            <li><a href="cronometro-online.html">Cronômetro</a></li>
+            <li><a href="timer-online.html">Timer</a></li>
+            <li><a href="hora-mundial.html">Hora Mundial</a></li>
+            <li><a href="privacy.html">Privacidade</a></li>
+            <li><a href="terms.html">Termos</a></li>
+            <li><a href="contact.html">Contato</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <h1>Bem-vindo ao TimerHub</h1>
+        <p class="intro-text">
+            Ferramentas de tempo online simples, rápidas e precisas. Use nosso cronômetro, timer e relógio direto no navegador, sem instalação ou cadastro. Perfeito para estudos, treinos, trabalho e muito mais.
         </p>
-    </section>
 
-    <!-- FEATURES SECTION -->
-    <section class="features">
-        <div class="feature-card">
-            <div class="feature-icon">🕐</div>
-            <h2>Relógio Online</h2>
-            <p>Veja a hora exata em tempo real com suporte a formatos de 12 e 24 horas. Perfeito para sincronizar seus compromissos.</p>
-            <a href="relogio-online.html">Acessar Relógio</a>
+        <!-- FEATURES -->
+        <div class="features">
+            <a href="cronometro-online.html" class="feature-card">
+                <div class="feature-icon">⏱️</div>
+                <h2>Cronômetro</h2>
+                <p>Cronômetro preciso com contador de voltas (laps). Ideal para medir tempos de atividades.</p>
+            </a>
+
+            <a href="timer-online.html" class="feature-card">
+                <div class="feature-icon">⏲️</div>
+                <h2>Timer</h2>
+                <p>Timer regressivo com alerta sonoro. Perfeito para cozinhar, estudar ou treinar.</p>
+            </a>
+
+            <a href="relogio-online.html" class="feature-card">
+                <div class="feature-icon">🕐</div>
+                <h2>Relógio</h2>
+                <p>Relógio digital em tempo real com opção de formato 12h ou 24h.</p>
+            </a>
+
+            <a href="hora-mundial.html" class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h2>Hora Mundial</h2>
+                <p>Consulte o horário de qualquer cidade do mundo em tempo real.</p>
+            </a>
         </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">⏱️</div>
-            <h2>Cronômetro Online</h2>
-            <p>Cronômetro preciso com histórico de tempos. Ideal para treinos, estudos e qualquer atividade que necessite cronometragem.</p>
-            <a href="cronometro-online.html">Usar Cronômetro</a>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">🌍</div>
-            <h2>Hora Mundial</h2>
-            <p>Consulte o horário em qualquer cidade do mundo. Adicione suas cidades favoritas e acompanhe em tempo real.</p>
-            <a href="hora-mundial.html">Ver Hora Mundial</a>
-        </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section class="section">
-        <h2>Por que escolher o TimerHub?</h2>
-        <p>
-            O TimerHub é uma plataforma desenvolvida para oferecer as melhores ferramentas de tempo online. Com uma interface moderna e intuitiva, você acessa todas as funcionalidades sem necessidade de instalação ou cadastro. Nossas ferramentas são otimizadas para velocidade e precisão, garantindo que você sempre tenha acesso à hora exata.
-        </p>
-        <p>
-            Seja para fins profissionais, educacionais ou pessoais, o TimerHub oferece soluções confiáveis e gratuitas. Nossas ferramentas funcionam em qualquer navegador moderno, em desktop ou dispositivos móveis, garantindo acessibilidade total.
-        </p>
-    </section>
+    </div>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <p class="footer-text">
-                <strong>TimerHub</strong> - Suas ferramentas de tempo online gratuitas.
+                <strong>TimerHub</strong> - Suas ferramentas de tempo online gratuitas
             </p>
             <div class="footer-links">
-                <a href="relogio-online.html">Relógio Online</a>
-                <a href="cronometro-online.html">Cronômetro Online</a>
+                <a href="relogio-online.html">Relógio</a>
+                <a href="cronometro-online.html">Cronômetro</a>
+                <a href="timer-online.html">Timer</a>
                 <a href="hora-mundial.html">Hora Mundial</a>
                 <a href="privacy.html">Privacidade</a>
-                <a href="terms.html">Termos de Uso</a>
+                <a href="terms.html">Termos</a>
                 <a href="contact.html">Contato</a>
             </div>
-            <p class="footer-text" style="font-size: 12px; margin-top: 20px;">
+            <p class="footer-text" style="font-size: 11px; margin-top: 15px;">
                 © 2024 TimerHub. Todos os direitos reservados.
             </p>
         </div>
     </footer>
+
+    <script>
+        // Menu Hambúrguer
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('header')) {
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>

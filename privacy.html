@@ -32,7 +32,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
             color: var(--text-primary);
             line-height: 1.6;
@@ -42,27 +42,26 @@
 
         /* HEADER */
         header {
-            background: rgba(15, 15, 30, 0.95);
+            background: rgba(15, 15, 30, 0.98);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
-            padding: 20px 0;
+            padding: 16px 20px;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
             box-shadow: var(--shadow);
         }
 
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
@@ -70,12 +69,32 @@
             background-clip: text;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             text-decoration: none;
+            white-space: nowrap;
         }
 
         .logo-icon {
-            font-size: 32px;
+            font-size: 28px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-toggle.active {
+            color: var(--secondary-color);
         }
 
         .nav-links {
@@ -96,66 +115,127 @@
             color: var(--primary-color);
         }
 
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 0;
+            width: 100%;
+            max-width: 280px;
+            background: rgba(15, 15, 30, 0.98);
+            border-left: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            animation: slideIn 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .mobile-menu li {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 16px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary-color);
+            padding-left: 24px;
+        }
+
         /* MAIN CONTENT */
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 40px 20px;
+            min-height: calc(100vh - 200px);
         }
 
         h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
             line-height: 1.2;
         }
 
         .last-updated {
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 30px;
         }
 
         h2 {
-            font-size: 28px;
-            margin: 40px 0 20px 0;
+            font-size: 22px;
+            margin: 35px 0 15px 0;
             color: var(--primary-color);
         }
 
         h3 {
-            font-size: 20px;
-            margin: 25px 0 15px 0;
+            font-size: 18px;
+            margin: 20px 0 12px 0;
             color: var(--text-primary);
         }
 
         p {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-secondary);
             line-height: 1.8;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         ul {
             list-style-position: inside;
             color: var(--text-secondary);
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.8;
-            margin-bottom: 20px;
-            margin-left: 20px;
+            margin-bottom: 15px;
+            margin-left: 15px;
         }
 
         li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         /* FOOTER */
         footer {
             background: rgba(15, 15, 30, 0.95);
             border-top: 1px solid var(--border-color);
-            padding: 40px 20px;
+            padding: 30px 20px;
             text-align: center;
             color: var(--text-secondary);
             margin-top: 80px;
@@ -167,8 +247,8 @@
         }
 
         .footer-text {
-            font-size: 14px;
-            margin-bottom: 15px;
+            font-size: 13px;
+            margin-bottom: 12px;
         }
 
         .footer-links {
@@ -176,13 +256,13 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             transition: color 0.3s ease;
         }
 
@@ -192,33 +272,18 @@
 
         /* RESPONSIVIDADE */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 36px;
-            }
-
-            h2 {
-                font-size: 24px;
-            }
-
-            .container {
-                padding: 40px 20px;
+            .menu-toggle {
+                display: block;
             }
 
             .nav-links {
-                gap: 15px;
+                display: none;
             }
 
-            .nav-links a {
-                font-size: 12px;
+            .container {
+                padding: 30px 16px;
             }
 
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
             h1 {
                 font-size: 28px;
             }
@@ -226,19 +291,23 @@
             h2 {
                 font-size: 20px;
             }
+        }
 
+        @media (max-width: 480px) {
             .container {
-                padding: 30px 15px;
+                padding: 24px 14px;
             }
 
-            .logo {
+            h1 {
                 font-size: 24px;
             }
 
-            .nav-links {
-                flex-direction: column;
-                gap: 8px;
-                text-align: center;
+            h2 {
+                font-size: 18px;
+            }
+
+            p, ul {
+                font-size: 14px;
             }
         }
     </style>
@@ -251,16 +320,30 @@
                 <span class="logo-icon">⏱️</span>
                 <span>TimerHub</span>
             </a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="relogio-online.html">Relógio Online</a></li>
+                    <li><a href="relogio-online.html">Relógio</a></li>
                     <li><a href="cronometro-online.html">Cronômetro</a></li>
+                    <li><a href="timer-online.html">Timer</a></li>
                     <li><a href="hora-mundial.html">Hora Mundial</a></li>
-                    <li><a href="contact.html">Contato</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="relogio-online.html">Relógio</a></li>
+            <li><a href="cronometro-online.html">Cronômetro</a></li>
+            <li><a href="timer-online.html">Timer</a></li>
+            <li><a href="hora-mundial.html">Hora Mundial</a></li>
+            <li><a href="privacy.html">Privacidade</a></li>
+            <li><a href="terms.html">Termos</a></li>
+            <li><a href="contact.html">Contato</a></li>
+        </ul>
+    </div>
 
     <!-- MAIN CONTENT -->
     <div class="container">
@@ -286,9 +369,7 @@
         </ul>
 
         <h2>3. Como Usamos Suas Informações</h2>
-        <p>
-            Usamos as informações coletadas para:
-        </p>
+        <p>Usamos as informações coletadas para:</p>
         <ul>
             <li>Melhorar e otimizar nosso site</li>
             <li>Analisar tendências de uso</li>
@@ -312,41 +393,14 @@
             Retemos dados de log por um período de até 90 dias. Após esse período, os dados são automaticamente deletados de nossos servidores.
         </p>
 
-        <h2>7. Direitos do Usuário</h2>
+        <h2>7. Conformidade com LGPD</h2>
         <p>
-            De acordo com a Lei Geral de Proteção de Dados (LGPD) e outras leis de proteção de dados aplicáveis, você tem direito a:
-        </p>
-        <ul>
-            <li>Acessar suas informações pessoais</li>
-            <li>Corrigir informações imprecisas</li>
-            <li>Solicitar a exclusão de seus dados</li>
-            <li>Opor-se ao processamento de seus dados</li>
-            <li>Solicitar a portabilidade de seus dados</li>
-        </ul>
-
-        <h2>8. Terceiros</h2>
-        <p>
-            O TimerHub não compartilha suas informações com terceiros, exceto quando exigido por lei ou para cumprir com obrigações legais. Não vendemos, alugamos ou compartilhamos suas informações com fins de marketing.
+            O TimerHub está em conformidade com a Lei Geral de Proteção de Dados (LGPD) do Brasil. Se você é residente do Brasil, você tem direitos adicionais sob a LGPD.
         </p>
 
-        <h2>9. Links Externos</h2>
+        <h2>8. Contato</h2>
         <p>
-            Nosso site pode conter links para sites de terceiros. Não somos responsáveis pelas práticas de privacidade desses sites. Recomendamos que você revise as políticas de privacidade de qualquer site de terceiros antes de fornecer informações pessoais.
-        </p>
-
-        <h2>10. Alterações a Esta Política</h2>
-        <p>
-            Podemos atualizar esta Política de Privacidade periodicamente. Qualquer alteração será postada nesta página com a data de atualização. Seu uso contínuo do site após alterações constitui sua aceitação da política revisada.
-        </p>
-
-        <h2>11. Contato</h2>
-        <p>
-            Se você tiver dúvidas sobre esta Política de Privacidade ou nossas práticas de privacidade, entre em contato conosco através da <a href="contact.html" style="color: var(--primary-color); text-decoration: none;">página de contato</a>.
-        </p>
-
-        <h2>12. Conformidade com LGPD</h2>
-        <p>
-            O TimerHub está em conformidade com a Lei Geral de Proteção de Dados (LGPD) do Brasil. Se você é residente do Brasil, você tem direitos adicionais sob a LGPD, incluindo o direito de solicitar informações sobre como seus dados são processados.
+            Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato conosco através da <a href="contact.html">página de contato</a>.
         </p>
     </div>
 
@@ -354,20 +408,46 @@
     <footer>
         <div class="footer-content">
             <p class="footer-text">
-                <strong>TimerHub</strong> - Suas ferramentas de tempo online gratuitas.
+                <strong>TimerHub</strong> - Suas ferramentas de tempo online gratuitas
             </p>
             <div class="footer-links">
-                <a href="relogio-online.html">Relógio Online</a>
-                <a href="cronometro-online.html">Cronômetro Online</a>
+                <a href="relogio-online.html">Relógio</a>
+                <a href="cronometro-online.html">Cronômetro</a>
+                <a href="timer-online.html">Timer</a>
                 <a href="hora-mundial.html">Hora Mundial</a>
                 <a href="privacy.html">Privacidade</a>
-                <a href="terms.html">Termos de Uso</a>
+                <a href="terms.html">Termos</a>
                 <a href="contact.html">Contato</a>
             </div>
-            <p class="footer-text" style="font-size: 12px; margin-top: 20px;">
+            <p class="footer-text" style="font-size: 11px; margin-top: 15px;">
                 © 2024 TimerHub. Todos os direitos reservados.
             </p>
         </div>
     </footer>
+
+    <script>
+        // Menu Hambúrguer
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('header')) {
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
