@@ -201,21 +201,15 @@
         }
 
         .timer-display {
-    font-family: 'Courier New', monospace;
-    font-size: clamp(2rem, 9vw, 4.5rem);
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 30px;
-    text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-    letter-spacing: 4px;
-    line-height: 1;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    box-sizing: border-box;
-}
+            font-family: 'Courier New', monospace;
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            letter-spacing: 4px;
+            line-height: 1;
+        }
 
         .timer-display.alarm {
             animation: pulse 0.5s infinite;
@@ -306,11 +300,13 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             width: 100%;
-            margin-bottom: 20px;
+            max-width: 100%;
+            margin: 0 auto 20px auto;
+            box-sizing: border-box;
         }
 
         .btn {
-            padding: 16px 24px;
+            padding: 16px 12px;
             background: linear-gradient(135deg, var(--primary-color), #00a8cc);
             color: var(--bg-dark);
             border: none;
@@ -321,6 +317,12 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .btn:hover {
@@ -354,6 +356,8 @@
             border: 2px solid rgba(0, 212, 255, 0.3);
             border-radius: 8px;
             width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .sound-toggle {
@@ -426,35 +430,51 @@
 
             .container {
                 padding: 30px 16px;
+                box-sizing: border-box;
             }
 
             .timer-display {
-                clamp responsivo
+                font-size: 56px;
                 letter-spacing: 2px;
             }
 
             .timer-section {
                 padding: 30px 20px;
+                box-sizing: border-box;
+                width: 100%;
+                max-width: 100%;
             }
 
             .input-section {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .quick-buttons {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 8px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .controls {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .btn {
-                padding: 14px 16px;
+                padding: 14px 8px;
                 font-size: 12px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             h1 {
@@ -466,10 +486,12 @@
         @media (max-width: 480px) {
             .container {
                 padding: 24px 14px;
+                box-sizing: border-box;
+                width: 100%;
             }
 
             .timer-display {
-                clamp responsivo
+                font-size: 48px;
                 letter-spacing: 2px;
                 margin-bottom: 20px;
             }
@@ -477,35 +499,54 @@
             .timer-section {
                 padding: 24px 16px;
                 margin-bottom: 20px;
+                box-sizing: border-box;
+                width: 100%;
+                max-width: 100%;
             }
 
             .input-section {
                 gap: 8px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .input-group input {
                 font-size: 16px;
                 padding: 10px;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .quick-buttons {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 6px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .quick-btn {
                 padding: 8px;
                 font-size: 11px;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .controls {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 8px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .btn {
-                padding: 12px 12px;
+                padding: 12px 8px;
                 font-size: 11px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             h1 {

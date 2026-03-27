@@ -193,7 +193,7 @@
             background: rgba(0, 212, 255, 0.08);
             border: 2px solid rgba(0, 212, 255, 0.3);
             border-radius: 16px;
-            padding: 50px 30px;
+            padding: 40px 30px;
             text-align: center;
             width: 100%;
             max-width: 400px;
@@ -201,49 +201,47 @@
         }
 
         .stopwatch-display {
-    font-family: 'Courier New', monospace;
-    font-size: clamp(28px, 9vw, 60px);
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 30px;
-    text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-    letter-spacing: 2px;
-    line-height: 1;
-
-    max-width: 100%;
-    overflow: hidden;
-    text-align: center;
-
-    display: block;            /* NOVO */
-    width: 100%;               /* NOVO */
-    margin-left: auto;         /* NOVO */
-    margin-right: auto;        /* NOVO */
-}
+            font-family: 'Courier New', monospace;
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            letter-spacing: 4px;
+            line-height: 1;
+        }
 
         /* CONTROL BUTTONS */
         .controls {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-    gap: 10px;
-    width: 100%;
-    margin-bottom: 20px;
-}
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto 20px auto;
+            box-sizing: border-box;
+        }
 
-.btn {
-    padding: 12px 10px;
-    background: linear-gradient(135deg, var(--primary-color), #00a8cc);
-    color: var(--bg-dark);
-    border: none;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    width: 100%;
-    white-space: nowrap;
-}
+        .btn {
+            padding: 16px 12px;
+            background: linear-gradient(135deg, var(--primary-color), #00a8cc);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
@@ -371,6 +369,7 @@
 
             .container {
                 padding: 30px 16px;
+                box-sizing: border-box;
             }
 
             .stopwatch-display {
@@ -380,16 +379,25 @@
 
             .stopwatch-section {
                 padding: 30px 20px;
+                box-sizing: border-box;
+                width: 100%;
+                max-width: 100%;
             }
 
             .controls {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .btn {
-                padding: 14px 16px;
+                padding: 14px 8px;
                 font-size: 12px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             h1 {
@@ -405,6 +413,8 @@
         @media (max-width: 480px) {
             .container {
                 padding: 24px 14px;
+                box-sizing: border-box;
+                width: 100%;
             }
 
             .stopwatch-display {
@@ -416,16 +426,25 @@
             .stopwatch-section {
                 padding: 24px 16px;
                 margin-bottom: 20px;
+                box-sizing: border-box;
+                width: 100%;
+                max-width: 100%;
             }
 
             .controls {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 8px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .btn {
-                padding: 12px 12px;
+                padding: 12px 8px;
                 font-size: 11px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             h1 {

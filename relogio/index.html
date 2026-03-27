@@ -201,24 +201,15 @@
         }
 
         .clock-display {
-    font-family: 'Courier New', monospace;
-    font-size: clamp(28px, 9vw, 60px); /* RESPONSIVO */
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-    letter-spacing: 2px;
-    line-height: 1;
-
-    max-width: 100%;        /* NOVO */
-    overflow: hidden;       /* NOVO */
-    text-align: center;     /* NOVO */
-
-    display: block;         /* CENTRALIZA CORRETO */
-    width: 100%;            /* CENTRALIZA CORRETO */
-    margin-left: auto;
-    margin-right: auto;
-}
+            font-family: 'Courier New', monospace;
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            letter-spacing: 4px;
+            line-height: 1;
+        }
 
         .date-display {
             font-size: 16px;
@@ -233,10 +224,12 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
             width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .btn {
-            padding: 14px 20px;
+            padding: 14px 12px;
             background: linear-gradient(135deg, var(--primary-color), #00a8cc);
             color: var(--bg-dark);
             border: none;
@@ -247,6 +240,9 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .btn:hover {
@@ -320,6 +316,7 @@
 
             .container {
                 padding: 30px 16px;
+                box-sizing: border-box;
             }
 
             .clock-display {
@@ -329,10 +326,16 @@
 
             .clock-section {
                 padding: 30px 20px;
+                box-sizing: border-box;
+                width: 100%;
+                max-width: 100%;
             }
 
             .format-buttons {
                 grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             h1 {
@@ -344,6 +347,8 @@
         @media (max-width: 480px) {
             .container {
                 padding: 24px 14px;
+                box-sizing: border-box;
+                width: 100%;
             }
 
             .clock-display {
@@ -355,16 +360,24 @@
             .clock-section {
                 padding: 24px 16px;
                 margin-bottom: 20px;
+                box-sizing: border-box;
+                width: 100%;
+                max-width: 100%;
             }
 
             .format-buttons {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .btn {
-                padding: 12px 16px;
+                padding: 12px 8px;
                 font-size: 12px;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             h1 {
