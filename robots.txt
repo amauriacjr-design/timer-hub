@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://timerhub.online/sitemap.xml
