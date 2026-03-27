@@ -207,8 +207,13 @@
             color: var(--primary-color);
             margin-bottom: 30px;
             text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             line-height: 1;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .timer-display.alarm {
@@ -228,11 +233,16 @@
             gap: 12px;
             margin-bottom: 25px;
             width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .input-group {
             display: flex;
             flex-direction: column;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .input-group label {
@@ -244,7 +254,7 @@
         }
 
         .input-group input {
-            padding: 12px;
+            padding: 12px 8px;
             background: rgba(0, 212, 255, 0.1);
             border: 2px solid var(--border-color);
             color: var(--text-primary);
@@ -253,6 +263,11 @@
             font-weight: 600;
             text-align: center;
             transition: all 0.3s ease;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .input-group input:focus {
@@ -435,7 +450,10 @@
 
             .timer-display {
                 font-size: 56px;
-                letter-spacing: 2px;
+                letter-spacing: 1px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .timer-section {
@@ -451,6 +469,11 @@
                 width: 100%;
                 max-width: 100%;
                 box-sizing: border-box;
+            }
+
+            .input-group input {
+                font-size: 16px;
+                padding: 10px 6px;
             }
 
             .quick-buttons {
@@ -491,9 +514,12 @@
             }
 
             .timer-display {
-                font-size: 48px;
-                letter-spacing: 2px;
+                font-size: 42px;
+                letter-spacing: 1px;
                 margin-bottom: 20px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .timer-section {
@@ -509,12 +535,24 @@
                 width: 100%;
                 max-width: 100%;
                 box-sizing: border-box;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .input-group {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .input-group label {
+                font-size: 11px;
             }
 
             .input-group input {
-                font-size: 16px;
-                padding: 10px;
+                font-size: 14px;
+                padding: 8px 4px;
                 width: 100%;
+                max-width: 100%;
                 box-sizing: border-box;
             }
 
